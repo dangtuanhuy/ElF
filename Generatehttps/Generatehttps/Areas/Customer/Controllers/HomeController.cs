@@ -8,6 +8,7 @@ using Generatehttps.Models;
 
 namespace Generatehttps.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         public IActionResult Index()

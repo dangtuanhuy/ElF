@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Generatehttps.Data;
 using Generatehttps.Models;
+using Microsoft.AspNetCore.Authorization;
+using Generatehttps.Utility;
 
 namespace Generatehttps.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.Admin)]
     [Area("Admin")]
     public class CategoriesController : Controller
     {

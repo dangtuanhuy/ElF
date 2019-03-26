@@ -7,29 +7,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Generatehttps.Data;
 using Generatehttps.Models;
-using Microsoft.AspNetCore.Authorization;
-using Generatehttps.Utility;
 
 namespace Generatehttps.Areas.Admin.Controllers
 {
-    [Authorize(Roles = SD.Admin)]
     [Area("Admin")]
-    public class CategoriesController : Controller
+    public class JobSkillsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriesController(ApplicationDbContext context)
+        public JobSkillsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/Categories
+        // GET: Admin/JobSkills
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            var applicationDbContext = _context.JobSkill.Include(j => j.Job).Include(j => j.Skill);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Admin/Categories/Details/5
+        // GET: Admin/JobSkills/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,39 +35,45 @@ namespace Generatehttps.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var jobSkill = await _context.JobSkill
+                .Include(j => j.Job)
+                .Include(j => j.Skill)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (jobSkill == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(jobSkill);
         }
 
-        // GET: Admin/Categories/Create
+        // GET: Admin/JobSkills/Create
         public IActionResult Create()
         {
+            ViewData["JobId"] = new SelectList(_context.Job, "Id", "Name");
+            ViewData["SkillId"] = new SelectList(_context.Skill, "Id", "Name");
             return View();
         }
 
-        // POST: Admin/Categories/Create
+        // POST: Admin/JobSkills/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,SkillId,JobId")] JobSkill jobSkill)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(jobSkill);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["JobId"] = new SelectList(_context.Job, "Id", "Name", jobSkill.JobId);
+            ViewData["SkillId"] = new SelectList(_context.Skill, "Id", "Name", jobSkill.SkillId);
+            return View(jobSkill);
         }
 
-        // GET: Admin/Categories/Edit/5
+        // GET: Admin/JobSkills/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,22 +81,24 @@ namespace Generatehttps.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var jobSkill = await _context.JobSkill.FindAsync(id);
+            if (jobSkill == null)
             {
                 return NotFound();
             }
-            return View(category);
+            ViewData["JobId"] = new SelectList(_context.Job, "Id", "Name", jobSkill.JobId);
+            ViewData["SkillId"] = new SelectList(_context.Skill, "Id", "Name", jobSkill.SkillId);
+            return View(jobSkill);
         }
 
-        // POST: Admin/Categories/Edit/5
+        // POST: Admin/JobSkills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SkillId,JobId")] JobSkill jobSkill)
         {
-            if (id != category.Id)
+            if (id != jobSkill.Id)
             {
                 return NotFound();
             }
@@ -101,12 +107,12 @@ namespace Generatehttps.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(jobSkill);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Id))
+                    if (!JobSkillExists(jobSkill.Id))
                     {
                         return NotFound();
                     }
@@ -117,10 +123,12 @@ namespace Generatehttps.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["JobId"] = new SelectList(_context.Job, "Id", "Name", jobSkill.JobId);
+            ViewData["SkillId"] = new SelectList(_context.Skill, "Id", "Name", jobSkill.SkillId);
+            return View(jobSkill);
         }
 
-        // GET: Admin/Categories/Delete/5
+        // GET: Admin/JobSkills/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,30 +136,32 @@ namespace Generatehttps.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var jobSkill = await _context.JobSkill
+                .Include(j => j.Job)
+                .Include(j => j.Skill)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (jobSkill == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(jobSkill);
         }
 
-        // POST: Admin/Categories/Delete/5
+        // POST: Admin/JobSkills/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
+            var jobSkill = await _context.JobSkill.FindAsync(id);
+            _context.JobSkill.Remove(jobSkill);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool JobSkillExists(int id)
         {
-            return _context.Category.Any(e => e.Id == id);
+            return _context.JobSkill.Any(e => e.Id == id);
         }
     }
 }

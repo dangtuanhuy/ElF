@@ -1,0 +1,133 @@
+﻿@model Generatehttps.Models.Job
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Edit Job</h2>
+<br />
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <div class="border backgroundWhite row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Salary" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Salary" class="form-control" />
+                </div>
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Description" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Description" class="form-control" />
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Status" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Image" class="col-form-label"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" multiple class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="StatusEnable" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="StatusEnable" class="form-control" />
+                </div>
+                <span asp-validation-for="StatusEnable" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="JobDate" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="JobDate" class="form-control" />
+                </div>
+                <span asp-validation-for="JobDate" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Experience" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Experience" class="form-control" />
+                </div>
+                <span asp-validation-for="Experience" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Others" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Others" class="form-control" />
+                </div>
+                <span asp-validation-for="Others" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                </div>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="WorkingTime" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="WorkingTime" class="form-control" />
+                </div>
+                <span asp-validation-for="WorkingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="WorkingForm" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="WorkingForm" class="form-control" />
+                </div>
+                <span asp-validation-for="WorkingForm" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-3 offset-1">
+            <img src="@Model.Image" width="100%" style="border-radius:5px;border: 1px solid #bbb9b9;" />
+        </div>
+        <div class="col-8">
+            <div class="col-8 offset-4">
+                <partial name="_EditAndBackToListButton" model="Model.Id" />
+            </div>
+        </div>
+    </div>
+</form>

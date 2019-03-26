@@ -20,9 +20,7 @@ namespace Generatehttps.Models
         [Required]
         public string Contact { get; set; }
 
-        [Required]
-        public string NumberOfEmployee { get; set; }
-
+       
         [Display(Name = "Number Of Employee")]
         public int NumberOfEmployeeId { get; set; }
 

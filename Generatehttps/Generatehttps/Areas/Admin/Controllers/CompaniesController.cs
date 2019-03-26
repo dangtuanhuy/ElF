@@ -50,7 +50,7 @@ namespace Generatehttps.Areas.Admin.Controllers
         // GET: Admin/Companies/Create
         public IActionResult Create()
         {
-            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Id");
+            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Name");
             ViewData["NumberOfEmployeeId"] = new SelectList(_context.NumOfEmployee, "Id", "Id");
             return View();
         }
@@ -60,7 +60,7 @@ namespace Generatehttps.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Type,Contact,NumberOfEmployee,NumberOfEmployeeId,CountryId")] Company company)
+        public async Task<IActionResult> Create([Bind("Id,Name,Type,Contact,NumberOfEmployeeId,CountryId")] Company company)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace Generatehttps.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Id", company.CountryId);
+            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Name", company.CountryId);
             ViewData["NumberOfEmployeeId"] = new SelectList(_context.NumOfEmployee, "Id", "Id", company.NumberOfEmployeeId);
             return View(company);
         }
@@ -86,7 +86,7 @@ namespace Generatehttps.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Id", company.CountryId);
+            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Name", company.CountryId);
             ViewData["NumberOfEmployeeId"] = new SelectList(_context.NumOfEmployee, "Id", "Id", company.NumberOfEmployeeId);
             return View(company);
         }
@@ -96,7 +96,7 @@ namespace Generatehttps.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Type,Contact,NumberOfEmployee,NumberOfEmployeeId,CountryId")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Type,Contact,NumberOfEmployeeId,CountryId")] Company company)
         {
             if (id != company.Id)
             {
@@ -123,7 +123,7 @@ namespace Generatehttps.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Id", company.CountryId);
+            ViewData["CountryId"] = new SelectList(_context.Country, "Id", "Name", company.CountryId);
             ViewData["NumberOfEmployeeId"] = new SelectList(_context.NumOfEmployee, "Id", "Id", company.NumberOfEmployeeId);
             return View(company);
         }

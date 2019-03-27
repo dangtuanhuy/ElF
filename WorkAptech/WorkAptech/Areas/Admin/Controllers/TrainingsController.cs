@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WorkAptech.Data;
+using WorkAptech.Utility;
 
 namespace WorkAptech.Areas.Admin.Controllers
 {
@@ -13,10 +16,11 @@ namespace WorkAptech.Areas.Admin.Controllers
     public class TrainingsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public TrainingsController(ApplicationDbContext context)
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public TrainingsController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Admin/Trainings
@@ -65,11 +69,38 @@ namespace WorkAptech.Areas.Admin.Controllers
             {
                 _context.Add(training);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", training.CategoryId);
             ViewData["CompanyId"] = new SelectList(_context.Company, "Id", "Address", training.CompanyId);
-            return View(training);
+            
+
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            var TrainFromDb = await _context.Training.FindAsync(training.Id);
+
+            if (files.Count > 0)
+            {
+                //files has been uploaded
+                var uploads = Path.Combine(webRootPath, "images");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var filesStream = new FileStream(Path.Combine(uploads, training.Id + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filesStream);
+                }
+                TrainFromDb.Image = @"\images\" + training.Id + extension;
+            }
+            else
+            {
+                //no file was uploaded, so use default
+                var uploads = Path.Combine(webRootPath, @"images\" + SD.DefaultCategoryImage);
+                System.IO.File.Copy(uploads, webRootPath + @"\images\" + training.Id + ".png");
+                TrainFromDb.Image = @"\images\" + training.Id + ".png";
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/Trainings/Edit/5
@@ -106,7 +137,30 @@ namespace WorkAptech.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(training);
+                    string webRootPath = _hostingEnvironment.WebRootPath;
+                    var files = HttpContext.Request.Form.Files;
+                    var TrainFromDb = await _context.Training.FindAsync(training.Id);
+                    if (files.Count > 0)
+                    {
+                        //New Image has been uploaded
+                        var uploads = Path.Combine(webRootPath, "images");
+                        var extension_new = Path.GetExtension(files[0].FileName);
+
+                        //Delete the original file
+                        var imagePath = Path.Combine(webRootPath, TrainFromDb.Image.TrimStart('\\'));
+
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                        using (var filesStream = new FileStream(Path.Combine(uploads, training.Id + extension_new), FileMode.Create))
+                        {
+                            files[0].CopyTo(filesStream);
+                        }
+                        TrainFromDb.Image = @"\images\" + training.Id + extension_new;
+                    }
+                    TrainFromDb.Title  = training.Title;
+                    //_context.Update(training);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -152,9 +206,18 @@ namespace WorkAptech.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            string webRootPath = _hostingEnvironment.WebRootPath;
             var training = await _context.Training.FindAsync(id);
-            _context.Training.Remove(training);
-            await _context.SaveChangesAsync();
+            if (training != null)
+            {
+                var imagePath = Path.Combine(webRootPath, training.Image.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                _context.Training.Remove(training);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Index));
         }
 

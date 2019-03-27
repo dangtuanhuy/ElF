@@ -25,7 +25,7 @@
                 <label asp-for="Type" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Type" class="form-control" />
+                <input asp-for="Type" />
             </div>
             <span asp-validation-for="Type" class="text-danger"></span>
         </div>
@@ -49,12 +49,21 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
+                <label asp-for="LocationId" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="LocationId" id="CategoryId" asp-items="ViewBag.LocationId" class="form-control"></select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
                 <label asp-for="CountryId" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input asp-for="CountryId" class="form-control" />
+                <select asp-for="CountryId" id="CategoryId" asp-items="ViewBag.CountryId" class="form-control"></select>
             </div>
-            <span asp-validation-for="CountryId" class="text-danger"></span>
+
         </div>
         <div class="form-group row">
             <div class="col-2">

@@ -1,0 +1,38 @@
+﻿@model WorkAptech.Data.SkillJob
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br />
+<h2 class="text-info">Delete Training</h2>
+<br />
+<form method="post">
+    <div class="backgroundWhiteBorder row">
+        <div class="col-8">
+            <input type="hidden" asp-for="Id" />
+            <fieldset disabled>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="SkillId" class="custom-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="SkillId" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="JobId" class="custom-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="JobId" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="col-8 offset-4">
+                        <partial name="_DeleteAndBackToListButton" model="Model.Id" />
+                    </div>
+                </div>
+</div>
+</form>

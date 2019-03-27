@@ -1,0 +1,86 @@
+﻿@model WorkAptech.Data.Company
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br />
+<h2 class="text-info">Edit Company</h2>
+<br />
+
+<form method="post" asp-action="Edit">
+    <div class="border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Type" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Type" />
+            </div>
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Address" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Contact" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Contact" class="form-control" />
+            </div>
+            <span asp-validation-for="Contact" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="LocationId" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="LocationId" id="CategoryId" asp-items="ViewBag.LocationId" class="form-control"></select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CountryId" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="CountryId" id="CategoryId" asp-items="ViewBag.CountryId" class="form-control"></select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="QtyEmployee" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="QtyEmployee" class="form-control" />
+            </div>
+            <span asp-validation-for="QtyEmployee" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_EditAndBackToListButton" model="Model.Id" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+

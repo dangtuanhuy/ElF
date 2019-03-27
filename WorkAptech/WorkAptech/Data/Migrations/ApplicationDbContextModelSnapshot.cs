@@ -15,7 +15,7 @@ namespace WorkAptech.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -141,11 +141,9 @@ namespace WorkAptech.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -176,11 +174,9 @@ namespace WorkAptech.Data.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -221,6 +217,8 @@ namespace WorkAptech.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(90);
+
+                    b.Property<string>("Picture");
 
                     b.HasKey("Id");
 
@@ -279,7 +277,7 @@ namespace WorkAptech.Data.Migrations
                     b.ToTable("Country");
                 });
 
-            modelBuilder.Entity("WorkAptech.Data.Event", b =>
+            modelBuilder.Entity("WorkAptech.Data.EventJob", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -288,6 +286,8 @@ namespace WorkAptech.Data.Migrations
                     b.Property<int>("CategoryId");
 
                     b.Property<int?>("CompanyId");
+
+                    b.Property<string>("Details");
 
                     b.Property<bool>("EventStatus");
 
@@ -309,7 +309,7 @@ namespace WorkAptech.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Event");
+                    b.ToTable("EventJob");
                 });
 
             modelBuilder.Entity("WorkAptech.Data.Job", b =>
@@ -336,6 +336,8 @@ namespace WorkAptech.Data.Migrations
 
                     b.Property<double>("Salary");
 
+                    b.Property<string>("UserId");
+
                     b.Property<string>("WorkingForm");
 
                     b.Property<string>("WorkingTime");
@@ -343,6 +345,8 @@ namespace WorkAptech.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Job");
                 });
@@ -360,6 +364,31 @@ namespace WorkAptech.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Location");
+                });
+
+            modelBuilder.Entity("WorkAptech.Data.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AppliDetailId");
+
+                    b.Property<string>("FromUserId");
+
+                    b.Property<bool>("Status");
+
+                    b.Property<string>("ToUserId");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppliDetailId");
+
+                    b.HasIndex("FromUserId");
+
+                    b.ToTable("Notification");
                 });
 
             modelBuilder.Entity("WorkAptech.Data.Skill", b =>
@@ -445,7 +474,6 @@ namespace WorkAptech.Data.Migrations
                     b.Property<int?>("CompanyId");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(90);
 
                     b.HasIndex("CompanyId");
@@ -523,7 +551,7 @@ namespace WorkAptech.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("WorkAptech.Data.Event", b =>
+            modelBuilder.Entity("WorkAptech.Data.EventJob", b =>
                 {
                     b.HasOne("WorkAptech.Data.Category", "Category")
                         .WithMany()
@@ -541,6 +569,22 @@ namespace WorkAptech.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WorkAptech.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("WorkAptech.Data.Notification", b =>
+                {
+                    b.HasOne("WorkAptech.Data.ApplyDetails", "ApplyDetails")
+                        .WithMany()
+                        .HasForeignKey("AppliDetailId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WorkAptech.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("FromUserId");
                 });
 
             modelBuilder.Entity("WorkAptech.Data.Skill", b =>

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<WorkAptech.Data.EventJob>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br /><br />
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info"> Event List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <partial name="_CreateButtonPartial" />
+        </div>
+    </div>
+    <br />
+    <div>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(m => m.TiTle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.FromDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ToDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Hour)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.EventStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Company)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.TiTle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.FromDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.ToDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Hour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.EventStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Company.Name)
+                    </td>
+
+                    <td>
+                        <partial name="_TableButtonPartial" model="item.Id" />
+                    </td>
+                </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>No Skill exists...</p>
+        }
+    </div>
+</div>

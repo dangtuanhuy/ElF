@@ -8,6 +8,7 @@ using WorkAptech.Models;
 
 namespace WorkAptech.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         public IActionResult Index()
@@ -24,6 +25,10 @@ namespace WorkAptech.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult Test()
+        {
+            return View();
         }
     }
 }

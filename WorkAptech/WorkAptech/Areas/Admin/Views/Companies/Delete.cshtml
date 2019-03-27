@@ -1,0 +1,75 @@
+﻿@model WorkAptech.Data.Company
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br />
+<h2 class="text-info">Delete Company</h2>
+<br />
+
+<form method="post" asp-action="Delete">
+    <div class="border backgroundWhite">
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Type" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Type" readonly />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Address" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Contact" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Contact" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CountryId" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CountryId" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="LocationId" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="LocationId" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="QtyEmployee" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="QtyEmployee" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_DeleteAndBackToListButton" model="Model.Id" />
+            </div>
+        </div>
+    </div>
+</form>
+

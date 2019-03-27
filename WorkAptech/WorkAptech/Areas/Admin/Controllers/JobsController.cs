@@ -53,6 +53,7 @@ namespace WorkAptech.Areas.Admin.Controllers
         // GET: Admin/Jobs/Create
         public IActionResult Create()
         {
+            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
             return View();
         }
@@ -62,7 +63,7 @@ namespace WorkAptech.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Salary,Description,Image,JobRole,JobDate,Experience,WorkingTime,WorkingForm,CategoryId")] Job job)
+        public async Task<IActionResult> Create([Bind("Id,Name,Salary,Description,Image,JobRole,JobDate,Experience,WorkingTime,WorkingForm,CategoryId,UserId")] Job job)
         {
             if (!ModelState.IsValid)
             {
@@ -98,6 +99,7 @@ namespace WorkAptech.Areas.Admin.Controllers
             }
             await _context.SaveChangesAsync();
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", job.CategoryId);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
             return View(job);
         }
 
@@ -114,6 +116,7 @@ namespace WorkAptech.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", job.CategoryId);
             return View(job);
         }
@@ -123,7 +126,7 @@ namespace WorkAptech.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Salary,Description,Image,JobRole,JobDate,Experience,WorkingTime,WorkingForm,CategoryId")] Job job)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Salary,Description,Image,JobRole,JobDate,Experience,WorkingTime,WorkingForm,CategoryId,UserId")] Job job)
         {
             if (id != job.Id)
             {
@@ -186,6 +189,7 @@ namespace WorkAptech.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", job.CategoryId);
             return View(job);
         }

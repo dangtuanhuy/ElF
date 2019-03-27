@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkAptech.Data;
 
 namespace WorkAptech.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190327084013_UserId")]
+    partial class UserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -370,31 +372,6 @@ namespace WorkAptech.Data.Migrations
                     b.ToTable("Location");
                 });
 
-            modelBuilder.Entity("WorkAptech.Data.Notification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AppliDetailId");
-
-                    b.Property<string>("FromUserId");
-
-                    b.Property<bool>("Status");
-
-                    b.Property<string>("ToUserId");
-
-                    b.Property<string>("Type");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppliDetailId");
-
-                    b.HasIndex("FromUserId");
-
-                    b.ToTable("Notification");
-                });
-
             modelBuilder.Entity("WorkAptech.Data.Skill", b =>
                 {
                     b.Property<int>("Id")
@@ -578,18 +555,6 @@ namespace WorkAptech.Data.Migrations
                     b.HasOne("WorkAptech.Data.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("WorkAptech.Data.Notification", b =>
-                {
-                    b.HasOne("WorkAptech.Data.ApplyDetails", "ApplyDetails")
-                        .WithMany()
-                        .HasForeignKey("AppliDetailId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WorkAptech.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("FromUserId");
                 });
 
             modelBuilder.Entity("WorkAptech.Data.Skill", b =>

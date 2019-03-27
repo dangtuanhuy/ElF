@@ -23,5 +23,7 @@ namespace WorkAptech.Data
         public DbSet<Location> Location { get; set; }
         public DbSet<EventJob> EventJob { get; set; }
         public DbSet<Training> Training { get; set; }
+
+        public DbSet<Notification> Notification { get; set; }
     }
 }

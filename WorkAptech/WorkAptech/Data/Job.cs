@@ -48,5 +48,11 @@ namespace WorkAptech.Data
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+
+        [Display(Name = "User")]
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

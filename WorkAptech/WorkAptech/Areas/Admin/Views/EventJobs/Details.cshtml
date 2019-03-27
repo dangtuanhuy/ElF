@@ -1,0 +1,81 @@
+﻿@model WorkAptech.Data.EventJob
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br />
+<h2 class="text-info">Event job Details</h2>
+<br />
+<div class="backgroundWhiteBorder row">
+    <div class="col-8">
+        <input type="hidden" asp-for="Id" />
+        <fieldset disabled>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="TiTle" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="TiTle" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="FromDate" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="FromDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ToDate" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ToDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Hour" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Hour" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="EventStatus" class="custom-label"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" asp-for="EventStatus" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Category.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Category.Name" disabled class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Company.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Company.Name" disabled class="form-control" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-3">
+        <img src="@Model.Image" width="100%" style="border-radius:5px;border:1px solid #bbb9b9;" />
+    </div>
+    <div class="col-8">
+        <div class="col-8 offset-4">
+            <partial name="_DeleteAndBackToListButton" model="Model.Id" />
+        </div>
+    </div>
+</div>

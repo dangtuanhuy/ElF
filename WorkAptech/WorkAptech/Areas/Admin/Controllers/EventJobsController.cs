@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WorkAptech.Data;
+using WorkAptech.Utility;
 
 namespace WorkAptech.Areas.Admin.Controllers
 {
@@ -14,8 +17,11 @@ namespace WorkAptech.Areas.Admin.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public EventJobsController(ApplicationDbContext context)
+        //upload Img
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public EventJobsController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
         {
+            _hostingEnvironment = hostingEnvironment;
             _context = context;
         }
 
@@ -61,15 +67,45 @@ namespace WorkAptech.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,TiTle,FromDate,ToDate,Hour,EventStatus,Image,CategoryId,CompanyId")] EventJob eventJob)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(eventJob);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(eventJob);
+
             }
+
+            _context.Add(eventJob);
+            await _context.SaveChangesAsync();
+            //Work on the image saving section
+
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            var enVentJobFromDb = await _context.EventJob.FindAsync(eventJob.Id);
+
+            if (files.Count > 0)
+            {
+                //files has been uploaded
+                var uploads = Path.Combine(webRootPath, "images");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var filesStream = new FileStream(Path.Combine(uploads, eventJob.Id + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filesStream);
+                }
+                enVentJobFromDb.Image = @"\images\" + eventJob.Id + extension;
+            }
+            else
+            {
+                //no file was uploaded, so use default
+                var uploads = Path.Combine(webRootPath, @"images\" + SD.DefaultEventImage);
+                System.IO.File.Copy(uploads, webRootPath + @"\images\" + eventJob.Id + ".png");
+                enVentJobFromDb.Image = @"\images\" + eventJob.Id + ".png";
+            }
+            await _context.SaveChangesAsync();
+
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", eventJob.CategoryId);
             ViewData["CompanyId"] = new SelectList(_context.Company, "Id", "Address", eventJob.CompanyId);
-            return View(eventJob);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/EventJobs/Edit/5
@@ -106,7 +142,41 @@ namespace WorkAptech.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(eventJob);
+                    string webRootPath = _hostingEnvironment.WebRootPath;
+                    var files = HttpContext.Request.Form.Files;
+
+                    var enVentFromDb = await _context.EventJob.FindAsync(eventJob.Id);
+
+                    if (files.Count > 0)
+                    {
+                        //New Image has been uploaded
+                        var uploads = Path.Combine(webRootPath, "images");
+                        var extension_new = Path.GetExtension(files[0].FileName);
+
+                        //Delete the original file
+                        var imagePath = Path.Combine(webRootPath, enVentFromDb.Image.TrimStart('\\'));
+
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+
+                        //we will upload the new file
+                        using (var filesStream = new FileStream(Path.Combine(uploads, eventJob.Id + extension_new), FileMode.Create))
+                        {
+                            files[0].CopyTo(filesStream);
+                        }
+                        enVentFromDb.Image = @"\images\" + eventJob.Id + extension_new;
+                    }
+                    enVentFromDb.TiTle = eventJob.TiTle;
+                    enVentFromDb.FromDate = eventJob.FromDate;
+                    enVentFromDb.ToDate = eventJob.ToDate;
+                    enVentFromDb.Hour = eventJob.Hour;
+                    enVentFromDb.EventStatus = eventJob.EventStatus;
+                    enVentFromDb.CategoryId = eventJob.CategoryId;
+                    enVentFromDb.CompanyId = eventJob.CompanyId;
+
+                    //_context.Update(eventJob);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -152,9 +222,19 @@ namespace WorkAptech.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            string webRootPath = _hostingEnvironment.WebRootPath;
             var eventJob = await _context.EventJob.FindAsync(id);
-            _context.EventJob.Remove(eventJob);
-            await _context.SaveChangesAsync();
+            if(eventJob != null)
+            {
+                var imagePath = Path.Combine(webRootPath, eventJob.Image.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                _context.EventJob.Remove(eventJob);
+                await _context.SaveChangesAsync();
+            }
+            
             return RedirectToAction(nameof(Index));
         }
 

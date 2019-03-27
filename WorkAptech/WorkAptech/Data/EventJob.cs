@@ -31,5 +31,7 @@ namespace WorkAptech.Data
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
+
+        public string Details { get; set; }
     }
 }

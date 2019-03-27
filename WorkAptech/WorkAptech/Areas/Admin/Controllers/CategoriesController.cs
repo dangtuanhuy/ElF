@@ -85,14 +85,14 @@ namespace WorkAptech.Areas.Admin.Controllers
                 {
                     files[0].CopyTo(filesStream);
                 }
-                CateFromDb.Picture = @"\images\category" + category.Id + extension;
+                CateFromDb.Picture = @"\images\" + category.Id + extension;
             }
             else
             {
                 //no file was uploaded, so use default
-                var uploads = Path.Combine(webRootPath, @"images\category" + SD.DefaultCategoryImage);
-                System.IO.File.Copy(uploads, webRootPath + @"\images\category" + category.Id + ".png");
-                CateFromDb.Picture = @"\images\category" + category.Id + ".png";
+                var uploads = Path.Combine(webRootPath, @"images\" + SD.DefaultCategoryImage);
+                System.IO.File.Copy(uploads, webRootPath + @"\images\" + category.Id + ".png");
+                CateFromDb.Picture = @"\images\" + category.Id + ".png";
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -138,7 +138,7 @@ namespace WorkAptech.Areas.Admin.Controllers
                     if (files.Count > 0)
                     {
                         //New Image has been uploaded
-                        var uploads = Path.Combine(webRootPath, "images\\category");
+                        var uploads = Path.Combine(webRootPath, "images");
                         var extension_new = Path.GetExtension(files[0].FileName);
 
                         //Delete the original file
@@ -154,7 +154,7 @@ namespace WorkAptech.Areas.Admin.Controllers
                         {
                             files[0].CopyTo(filesStream);
                         }
-                        CategoryFromDb.Picture = @"\images\category" + category.Id + extension_new;
+                        CategoryFromDb.Picture = @"\images\" + category.Id + extension_new;
                     }
                     CategoryFromDb.Name = category.Name;
                     // _context.Update(category);

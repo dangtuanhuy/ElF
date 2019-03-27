@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WorkAptech.Data
 {
-    public class Event
+    public class EventJob
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]

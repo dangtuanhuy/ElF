@@ -17,5 +17,7 @@ namespace WorkAptech.Data
         [Display(Name = "Category")]
         [MaxLength(90)]
         public string Name { get; set; }
+
+        public string Picture { get; set; }
     }
 }

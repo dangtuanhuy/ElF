@@ -34,6 +34,7 @@ namespace WorkAptech.Data
 
         [Required(ErrorMessage = "JobDate can not null")]
         [Display(Name = "JobDate Details")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime JobDate { get; set; }
 
         [Display(Name = "Experience")]

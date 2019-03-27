@@ -10,7 +10,7 @@ namespace WorkAptech.Data
 {
     public class ApplicationUser:IdentityUser
     {
-        [Required]
+      
         [Display(Name = "Full Name")]
         [MaxLength(90)]
         public string Name { get; set; }

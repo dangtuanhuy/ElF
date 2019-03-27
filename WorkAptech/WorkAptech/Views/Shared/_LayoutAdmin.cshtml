@@ -54,8 +54,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">About:</h6>
-                        <a class="collapse-item" href="#">Employer</a>
-                        <a class="collapse-item" href="#">Job Seeker</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="User" asp-area="Admin">User</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="Skill" asp-area="Admin">Skill</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="SkillJobs" asp-area="Admin">SkillJob</a>
                     </div>
                 </div>
             </li>
@@ -71,16 +72,23 @@
                         <h6 class="collapse-header">Job Manager</h6>
                         <a class="collapse-item" asp-action="Index" asp-controller="Location" asp-area="Admin">Location</a>
                         <a class="collapse-item" asp-action="Index" asp-controller="Categories" asp-area="Admin">Category</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="Company" asp-area="Admin">Company</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="Country" asp-area="Admin">Country</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#training" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-arrow-alt-circle-right"></i>
                     <span>Traning Management</span>
                 </a>
+                <div id="training"  class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">About:</h6>
+                        <a class="collapse-item" asp-action="Index" asp-controller="Trainings" asp-area="Admin">Training</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="EventJobs" asp-area="Admin">EventJobs</a>
+                    </div>
+                </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">

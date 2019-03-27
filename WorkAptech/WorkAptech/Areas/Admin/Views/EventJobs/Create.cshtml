@@ -43,18 +43,17 @@
                 <label asp-for="Hour" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Hour" class="form-control" />
+                <input asp-for="Hour" id="timepicker"  class="form-control" />
             </div>
             <span asp-validation-for="Hour" class="text-danger"></span>
         </div>
-        <div class="form-group row">
-            <div class="col-2">
-                <label asp-for="EventStatus" class="col-form-label"></label>
-            </div>
+        
+
             <div class="col-5">
-                <input asp-for="EventStatus" /> @Html.DisplayNameFor(model => model.EventStatus)
+                <input value="1" checked="checked" hidden="hidden"/>    
             </div>
-        </div>
+
+
         <div class="form-group row">
             <div class="col-2">
                 <label asp-for="Image" class="col-form-label"></label>
@@ -95,4 +94,19 @@
         </div>
     </div>
 </form>
-
+@section Scripts {
+    <script>
+        $('#timepicker').timepicker({
+            timeFormat: 'h:mm:ss',
+            interval: 30,
+            minTime: '6',
+            maxTime: '6:00pm',
+            defaultTime: '11',
+            startTime: '6:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

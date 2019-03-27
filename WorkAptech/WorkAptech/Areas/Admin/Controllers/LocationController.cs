@@ -31,11 +31,13 @@ namespace WorkAptech.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var location = await _db.Location.FindAsync();
+
+            var location = await _db.Location.FindAsync(id);
             if (location == null)
             {
                 return NotFound();
             }
+
             return View(location);
         }
 
@@ -65,49 +67,72 @@ namespace WorkAptech.Areas.Admin.Controllers
         }
 
         // GET: Location/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var location = await _db.Location.FindAsync(id);
+            if (location == null)
+            {
+                return NotFound();
+            }
+            return View(location);
+
         }
 
         // POST: Location/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(Location location)
         {
             try
             {
                 // TODO: Add update logic here
-
+                if (ModelState.IsValid)
+                {
+                    _db.Update(location);
+                    await _db.SaveChangesAsync();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(location);
             }
         }
 
         // GET: Location/Delete/5
-        public ActionResult Delete(int id)
+        //GET - DELETE
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var location = await _db.Location.FindAsync(id);
+            if (location == null)
+            {
+                return NotFound();
+            }
+            return View(location);
         }
 
-        // POST: Location/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var location = await _db.Location.FindAsync(id);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            if (location == null)
             {
                 return View();
             }
+            _db.Location.Remove(location);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
+
     }
 }

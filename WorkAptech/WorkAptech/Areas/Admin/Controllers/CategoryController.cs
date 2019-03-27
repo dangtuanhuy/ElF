@@ -10,6 +10,7 @@ namespace WorkAptech.Areas.Admin.Controllers
     [Area("admin")]
     public class CategoryController : Controller
     {
+
         // GET: Category
         public ActionResult Index()
         {

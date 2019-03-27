@@ -65,7 +65,7 @@ namespace WorkAptech.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TiTle,FromDate,ToDate,Hour,EventStatus,Image,CategoryId,CompanyId")] EventJob eventJob)
+        public async Task<IActionResult> Create([Bind("Id,TiTle,FromDate,ToDate,Hour,EventStatus,Image,CategoryId,CompanyId,Details")] EventJob eventJob)
         {
             if (!ModelState.IsValid)
             {
@@ -131,7 +131,7 @@ namespace WorkAptech.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TiTle,FromDate,ToDate,Hour,EventStatus,Image,CategoryId,CompanyId")] EventJob eventJob)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TiTle,FromDate,ToDate,Hour,EventStatus,Image,CategoryId,CompanyId,Details")] EventJob eventJob)
         {
             if (id != eventJob.Id)
             {

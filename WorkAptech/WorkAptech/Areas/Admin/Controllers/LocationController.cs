@@ -25,13 +25,22 @@ namespace WorkAptech.Areas.Admin.Controllers
         }
 
         // GET: Location/Details/5
-        public async  Task<ActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var location = await _db.Location.FindAsync();
+            if (location == null)
+            {
+                return NotFound();
+            }
+            return View(location);
         }
 
         // GET: Location/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -39,17 +48,19 @@ namespace WorkAptech.Areas.Admin.Controllers
         // POST: Location/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Location location)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                    _db.Location.Add(location);
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(location);
             }
         }
 

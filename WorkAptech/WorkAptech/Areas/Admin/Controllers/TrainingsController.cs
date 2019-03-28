@@ -220,7 +220,46 @@ namespace WorkAptech.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Lock(Int32? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var applicationUser = await _context.Training.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            applicationUser.Status = true;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> UnLock(Int32? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var applicationUser = await _context.Training.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            applicationUser.Status = false;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
         private bool TrainingExists(int id)
         {
             return _context.Training.Any(e => e.Id == id);

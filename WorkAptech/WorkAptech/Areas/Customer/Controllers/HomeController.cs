@@ -17,7 +17,7 @@ namespace WorkAptech.Controllers
     {
         private readonly ApplicationDbContext _db;
         [BindProperty]
-        public HomeLocationVM HomeLocationVM {get;set;}
+        public HomeLocationVM HomeLocationVM { get; set; }
         public HomeController(ApplicationDbContext db)
         {
             _db = db;
@@ -30,21 +30,34 @@ namespace WorkAptech.Controllers
                     .Include(m => m.ApplicationUser.Company)
                     .Include(m => m.ApplicationUser.Company.Country),
                 ApplicationUser = _db.ApplicationUser
-                    .Include(m=>m.Company)
-                    .Include(m=>m.Company.Country)
-                    .Include(m=>m.Company.Location)
+                    .Include(m => m.Company)
+                    .Include(m => m.Company.Country)
+                    .Include(m => m.Company.Location)
                 .ToList()
             };
         }
         public IActionResult Index(string sortOrder, string searchString, int idLocation, int idCategory)
         {
             ViewData["CurrentFilter"] = searchString;
-            
+
+            HomeLocationVM.Job = _db.Job.Include(m => m.Category)
+                    .Include(m => m.ApplicationUser)
+                    .Include(m => m.ApplicationUser.Company)
+                    .Include(m => m.ApplicationUser.Company.Country);
+
+            if (idCategory != 0)
+            {
+                HomeLocationVM.Job = HomeLocationVM.Job.Where(s => s.CategoryId == idCategory);
+            }
+            if(idLocation != 0)
+            {
+                HomeLocationVM.Job = HomeLocationVM.Job.Where(m => m.ApplicationUser.Company.Location.Id == idLocation);
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
-                HomeLocationVM.Job = _db.Job.Include(m=>m.ApplicationUser).Include(m=>m.ApplicationUser.Company.Location).Where(s => s.ApplicationUser.Company.Location.Name.Contains(searchString)
-                                       || s.Category.Name.Contains(searchString)|| s.Name.Contains(searchString));
+                HomeLocationVM.Job = HomeLocationVM.Job.Where(m => m.Name.Contains(searchString));
             }
+
             ViewData["LocationId"] = new SelectList(_db.Location, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_db.Category, "Id", "Name");
             return View(HomeLocationVM);

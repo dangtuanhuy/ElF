@@ -14,7 +14,7 @@
                 <h1 class="text-white">
                     <span>1500+</span> Jobs posted last week
                 </h1>
-                <form asp-action="Index" class="serach-form-area" method="get">
+                <form asp-action="Search" class="serach-form-area" method="get">
                     <div class="row justify-content-center form-wrap">
                         <div class="col-lg-4 form-cols">
                             <input type="text" class="form-control" name="SearchString"
@@ -36,11 +36,12 @@
                             </div>
                         </div>
                         <div class="col-lg-2 form-cols">
-                            <input type="submit" value="Search" class="btn btn-default" />
+                            <button type="button" class="btn btn-info btn-temp-search">
+                                <span class="lnr lnr-magnifier"></span> Search
+                            </button>
+                            <input type="submit" value="Search" class="btn btn-default btn-prim-search" style="display:none" />
                         </div>
-                        @*<button type="button" class="btn btn-info">
-                            <span class="lnr lnr-magnifier"></span> Search
-                        </button>*@
+                        
                     </div>
                 </form>
                 <p class="text-white">
@@ -105,102 +106,19 @@
         </div>
         <div class="row">
             <div class="slide-category">
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o1.png" alt="">
-                        </a>
-                        <p>Accounting1</p>
+                @foreach (var ii in Model.Category)
+                {
+                    <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                        <div class="single-fcat">
+                            <a href="category.html">
+                                <img src="@ii.Picture" alt="">
+                            </a>
+                            <p>@ii.Name</p>
+                        </div>
                     </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o2.png" alt="">
-                        </a>
-                        <p>Development</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o3.png" alt="">
-                        </a>
-                        <p>Technology</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o1.png" alt="">
-                        </a>
-                        <p>Accounting</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o2.png" alt="">
-                        </a>
-                        <p>Development</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o3.png" alt="">
-                        </a>
-                        <p>Technology</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o1.png" alt="">
-                        </a>
-                        <p>Accounting</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o2.png" alt="">
-                        </a>
-                        <p>Development</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o3.png" alt="">
-                        </a>
-                        <p>Technology</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o4.png" alt="">
-                        </a>
-                        <p>Media & News</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o5.png" alt="">
-                        </a>
-                        <p>Medical</p>
-                    </div>
-                </div>
-                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
-                    <div class="single-fcat">
-                        <a href="category.html">
-                            <img src="/libUs/img/o6.png" alt="">
-                        </a>
-                        <p>Goverment</p>
-                    </div>
-                </div>
+                }
+
+
             </div>
         </div>
     </div>
@@ -254,7 +172,7 @@
     <hr class="line-break" />
 </section>
 <!-- Start popular-post Area -->
-<section class="popular-post-area pt-100" style="padding-bottom: 100px;">
+<section class="popular-post-area pt-100">
     <div class="container">
         <div class="title-suggest-job">
             <div class="title">Jobs for <span>you</span></div>
@@ -274,13 +192,14 @@
                                     <td><a class="btns text-uppercase" asp-area="customer" asp-controller="home" asp-action="DetailsJob" asp-route-id="@it.Id">view job</a></td>
                                 </tr>
                             </table>
-                        </div>@it.Id
+                        </div>
                         <div class="details">
+                            <p class="titles-cate-in-job2">@it.Category.Name</p>
                             <a href="#">
                                 <h4>@it.Name</h4>
                             </a>
                             <span class="count-time-job">@it.JobDate</span>
-                            <h6 style="font-weight: 400; padding: 4px 0">@it.ApplicationUser.Company.Name</h6>
+                            <h6 style="font-weight: 400; padding: 4px 0">@*<img src="@it.ApplicationUser.Avarta" alt="">*@@it.ApplicationUser.Company.Name</h6>
                             <div style="font-size:12px;">
                                 <p class="address" style="color:#68ba50">
                                     <i class="fas fa-dollar-sign"
@@ -297,11 +216,153 @@
                                         ali...<span style="font-size:14px">&rdquo;</span>
                                     </p>
                                 </div>
+                                <ul class="tags-skill">
+                                    @foreach (var oo in Model.SkillJob.Where(m => m.JobId == @it.Id))
+                                    {
+                                        <li>
+                                            <a href="#">@oo.Skill.Name</a>
+                                        </li>
+                                    }
+                                </ul>
                             </div>
                         </div>
                     }
-            </div>  
+            </div>
         </div>
     </div>
 </section>
 <!-- End popular-post Area -->
+<section class="post-area section-gap event-training">
+    <div class="container">
+        <div class="row justify-content-center d-flex">
+            <div class="col-lg-6">
+                <div class="title-left">
+                    <p>Latest event</p>
+                </div>
+                <div class="content-left">
+                    <div class="content-ruler"></div>
+                    <div class="content-item">
+                        @foreach (var io in Model.Job.Take(4))
+                        {
+                            <div class="single-popular-post d-flex flex-row" style="padding:15px 20px 10px 20px">
+                                <div class="thumb">
+                                    <table>
+                                        <tr>
+                                            <td><img src="@io.Image" alt=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a class="btns text-uppercase" href="#">view</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="details">
+                                    <p class="name-cate">@io.Category.Name</p>
+                                    <a href="#">
+                                        <h4>@io.Name</h4>
+                                    </a>
+                                    <h6 style="font-weight: 400; padding: 4px 0">
+                                        <img src="img/header-bg2.jpg"
+                                             alt="">@io.ApplicationUser.Company.Address
+                                    </h6>
+                                    <div style="font-size:12px;">
+                                        <p class="address" style="color:#68ba50">
+                                            <i class="fas fa-calendar-alt"
+                                               style="margin: 0 10px 0 3px"></i>@io.JobDate
+                                        </p>
+                                    </div>
+                                    <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
+                                        <p>
+                                            <span style="font-size:14px">&ldquo;</span>@io.Description<span style="font-size:14px">&rdquo;</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 post-list blog-post-list">
+                <div class="title-right">
+                    <p>Trainning</p>
+                </div>
+                <div class="content-right">
+                    <div class="single-post item">
+                        <img class="img-fluid" src="img/blog/p1.jpg" alt="">
+                        <ul class="tags">
+                            <li><a href="#">Technology</a></li>
+                        </ul>
+                        <a href="blog-single.html">
+                            <h1>
+                                Cartridge Is Better Than Ever
+                                A Discount Toner
+                            </h1>
+                        </a>
+                        <div class="bottom-meta">
+                            <div class="user-details row align-items-center">
+                                <div class="comment-wrap col-lg-6">
+                                    <p class="content-trainning">
+                                        MCSE boot camps have its supporters and its detractors. Some people do not
+                                        understand
+                                        why you should have to spend money on boot camp when you
+                                    </p>
+                                </div>
+                                <div class="social-wrap col-lg-6">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p class="address" style="color:#68ba50">
+                                                    <i class="fas fa-calendar-alt"
+                                                       style="margin: 0 10px 0 3px"></i>03/02/2019 - 04/02/2019
+                                                </p>
+                                        </tr>
+                                        <tr>
+                                            <p class="address" style="color:#68ba50">Online</p>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-post item">
+                        
+                        <img class="img-fluid" src="~/libUs/img/blog/p1.jpg"  alt="" />
+                        <ul class="tags">
+                            <li><a href="#">Technology</a></li>
+                        </ul>
+                        <a href="blog-single.html">
+                            <h1>
+                                Cartridge Is Better Than Ever
+                                A Discount Toner
+                            </h1>
+                        </a>
+                        <div class="bottom-meta">
+                            <div class="user-details row align-items-center">
+                                <div class="comment-wrap col-lg-6">
+                                    <p class="content-trainning">
+                                        MCSE boot camps have its supporters and its detractors. Some people do not
+                                        understand
+                                        why you should have to spend money on boot camp when you
+                                    </p>
+                                </div>
+                                <div class="social-wrap col-lg-6">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p class="address" style="color:#68ba50">
+                                                    <i class="fas fa-calendar-alt"
+                                                       style="margin: 0 10px 0 3px"></i>03/02/2019 - 04/02/2019
+                                                </p>
+                                        </tr>
+                                        <tr>
+                                            <p class="address" style="color:#68ba50">Online</p>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

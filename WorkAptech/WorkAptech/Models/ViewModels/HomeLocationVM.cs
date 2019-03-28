@@ -12,6 +12,7 @@ namespace WorkAptech.Models.ViewModels
         public IEnumerable<Location> Location { get; set; }
         public IEnumerable<Category> Category { get; set; }
         public IEnumerable<Job> Job { get; set; }
-        public IEnumerable<Skill> Skill { get; set; }
+        public IEnumerable<SkillJob> SkillJob { get; set; }
+        public IEnumerable<Training> Training { get; set; }
     }
 }

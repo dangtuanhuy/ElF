@@ -29,6 +29,8 @@ namespace WorkAptech.Controllers
                     .Include(m => m.ApplicationUser)
                     .Include(m => m.ApplicationUser.Company)
                     .Include(m => m.ApplicationUser.Company.Country),
+                SkillJob = _db.SkillJob.Include(m=>m.Skill),
+                //Training = _db.Training.Include(m=>m.),
                 ApplicationUser = _db.ApplicationUser
                     .Include(m => m.Company)
                     .Include(m => m.Company.Country)
@@ -50,6 +52,32 @@ namespace WorkAptech.Controllers
                 HomeLocationVM.Job = HomeLocationVM.Job.Where(s => s.CategoryId == idCategory);
             }
             if(idLocation != 0)
+            {
+                HomeLocationVM.Job = HomeLocationVM.Job.Where(m => m.ApplicationUser.Company.Location.Id == idLocation);
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                HomeLocationVM.Job = HomeLocationVM.Job.Where(m => m.Name.Contains(searchString));
+            }
+
+            ViewData["LocationId"] = new SelectList(_db.Location, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(_db.Category, "Id", "Name");
+            return View(HomeLocationVM);
+        }
+        public IActionResult Search(string sortOrder, string searchString, int idLocation, int idCategory)
+        {
+            ViewData["CurrentFilter"] = searchString;
+
+            HomeLocationVM.Job = _db.Job.Include(m => m.Category)
+                    .Include(m => m.ApplicationUser)
+                    .Include(m => m.ApplicationUser.Company)
+                    .Include(m => m.ApplicationUser.Company.Country);
+
+            if (idCategory != 0)
+            {
+                HomeLocationVM.Job = HomeLocationVM.Job.Where(s => s.CategoryId == idCategory);
+            }
+            if (idLocation != 0)
             {
                 HomeLocationVM.Job = HomeLocationVM.Job.Where(m => m.ApplicationUser.Company.Location.Id == idLocation);
             }

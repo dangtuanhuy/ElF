@@ -158,17 +158,19 @@ $(document).ready(function () {
     var reloading = sessionStorage.getItem("detail");
     if ($(this).scrollTop() > 100) {
       $('#header').addClass('header-scrolled');
-      if ($(this).scrollTop() > $('.btn-apply-seeker').offset().top) {
-        if ($('#navbar-job').css('display') == 'none' && reloading) {
-          $('#navbar-job').css('display', 'block');
-          $('#nav-menu-container').css('display', 'none');
+      if (reloading) {
+        if ($(this).scrollTop() > $('.btn-apply-seeker').offset().top) {
+          if ($('#navbar-job').css('display') == 'none') {
+            $('#navbar-job').css('display', 'block');
+            $('#nav-menu-container').css('display', 'none');
+          }
         }
-      }
-      else{
-        if($('#navbar-job').css('display') == 'block'){
-        $('#navbar-job').css('display', 'none');
-        $('#nav-menu-container').css('display', 'block');
-       }
+        else {
+          if ($('#navbar-job').css('display') == 'block') {
+            $('#navbar-job').css('display', 'none');
+            $('#nav-menu-container').css('display', 'block');
+          }
+        }
       }
     } else {
       $('#header').removeClass('header-scrolled');
@@ -178,11 +180,13 @@ $(document).ready(function () {
     var reloading = sessionStorage.getItem("detail");
     if ($(this).scrollTop() > 100) {
       $('#header').addClass('header-scrolled');
-      if ($(this).scrollTop() > $('.btn-apply-seeker').offset().top && reloading) {
-        $('#navbar-job').css('display', 'block');
+      if (reloading) {
+        if ($(this).scrollTop() > $('.btn-apply-seeker').offset().top) {
+          $('#navbar-job').css('display', 'block');
           $('#nav-menu-container').css('display', 'none');
+        }
       }
-    }    
+    }
   });
 
 
@@ -238,49 +242,63 @@ $(document).ready(function () {
     }
   });
   $('.slide-category').owlCarousel({
-    loop:true,
-    nav:true,
-    navText : ["",""],
-    dots:false,
-    margin:30,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },            
-        960:{
-            items:5
-        },
-        1200:{
-            items:6
-        }
+    loop: true,
+    nav: true,
+    navText: ["", ""],
+    dots: false,
+    margin: 30,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      960: {
+        items: 5
+      },
+      1200: {
+        items: 6
+      }
     }
-});
-$('.noti-icon').on('click',function(e){
-  $('.noti').toggleClass('active');
-  $('.noti-dropdown').toggleClass('active');  
-  e.stopPropagation(); 
-});
-$(document).mouseup(function(e) 
-{
+  });
+
+  $('.content-right').owlCarousel({
+     autoplay: true,
+     items: 1,
+     nav: true,
+     loop: true,
+     autoplayHoverPause: true,
+     navText: ["", ""],
+     animateOut: 'slideOutUp',
+     animateIn: 'slideInUp',
+     autoplayTimeout: 5000,
+   });
+
+  $('.noti-icon').on('click', function (e) {
+    $('.noti').toggleClass('active');
+    $('.noti-dropdown').toggleClass('active');
+    e.stopPropagation();
+  });
+  $(document).mouseup(function (e) {
     var container = $("#noti1");
-    if (!container.is(e.target) && container.has(e.target).length === 0) 
-    {
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
       $('.noti').removeClass('active');
       $('.noti-dropdown').removeClass('active');
     }
-});
-// $('*').click(function(){
-//   console.log($(this));
-//   console.log($(this).attr('id'));
-//   if($(this).attr('id') !== '#noti1' && $('.noti').hasClass('active')){
-//     console.log('run');
-//     $('.noti').removeClass('active');
-//     $('.noti-dropdown').removeClass('active');
-//   }
-// });
+  });
+    $('.btn-temp-search').on('click', function() {
+        $('.btn-prim-search').click();
+    });
+  // $('*').click(function(){
+  //   console.log($(this));
+  //   console.log($(this).attr('id'));
+  //   if($(this).attr('id') !== '#noti1' && $('.noti').hasClass('active')){
+  //     console.log('run');
+  //     $('.noti').removeClass('active');
+  //     $('.noti-dropdown').removeClass('active');
+  //   }
+  // });
 
 
 

@@ -29,5 +29,6 @@ namespace WorkAptech.Data
         public DateTime AppliedDate { get; set; }
 
         public Boolean Status { get; set; }
+        public string CV { get; set; }
     }
 }

@@ -115,7 +115,6 @@
                 <label class="col-form-label">Skill</label>
             </div>
             <div class="col-5">
-                @*@(new SelectList(string.Empty, "Id", "Name"))*@
                 <select asp-for="@Model.Skill" id="SkillId" asp-items="ViewBag.skills" class="form-control" multiple="multiple"></select>
             </div>
         </div>

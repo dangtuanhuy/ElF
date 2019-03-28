@@ -21,10 +21,7 @@ namespace WorkAptech.Data
         [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
 
-        [Display(Name = "User Skill")]
-        public int? UserSkillId { get; set; }
-        [ForeignKey("UserSkillId")]
-        public virtual UserSkill UserSkill { get; set; }
+        public string UserSkill { get; set; }
 
         [Display(Name = "Experience")]
         public string Experience { get; set; }

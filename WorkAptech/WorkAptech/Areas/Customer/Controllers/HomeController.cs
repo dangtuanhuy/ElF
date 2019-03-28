@@ -36,8 +36,15 @@ namespace WorkAptech.Controllers
                 .ToList()
             };
         }
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder, string searchString, int idLocation, int idCategory)
         {
+            ViewData["CurrentFilter"] = searchString;
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                HomeLocationVM.Job = _db.Job.Include(m=>m.ApplicationUser).Include(m=>m.ApplicationUser.Company.Location).Where(s => s.ApplicationUser.Company.Location.Name.Contains(searchString)
+                                       || s.Category.Name.Contains(searchString)|| s.Name.Contains(searchString));
+            }
             ViewData["LocationId"] = new SelectList(_db.Location, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_db.Category, "Id", "Name");
             return View(HomeLocationVM);

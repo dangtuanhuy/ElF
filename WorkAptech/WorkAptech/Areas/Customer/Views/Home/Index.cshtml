@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
+
 <!-- start banner Area -->
 <section class="banner-area relative" id="home">
     <div class="overlay overlay-bg"></div>
@@ -13,28 +14,30 @@
                 <h1 class="text-white">
                     <span>1500+</span> Jobs posted last week
                 </h1>
-                <form action="search.html" class="serach-form-area">
+                <form asp-action="Index" class="serach-form-area" method="get">
                     <div class="row justify-content-center form-wrap">
                         <div class="col-lg-4 form-cols">
-                            <input type="text" class="form-control" name="search"
-                                   placeholder="what are you looging for?">
+                            <input type="text" class="form-control" name="SearchString"
+                                   placeholder="what are you looging for?" value="@ViewData["currentFilter"]">
                         </div>
                         <div class="col-lg-3 form-cols">
                             <div class="default-select" id="default-selects">
-                                <select asp-items="ViewBag.CategoryId"></select>
+                                <select asp-items="ViewBag.CategoryId" name="idCategory">
+                                    <option value="0">All</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-3 form-cols">
                             <div class="default-select" id="default-selects2">
-                                <select asp-items="ViewBag.LocationId">
-                                    
+                                <select asp-items="ViewBag.LocationId" name="idLocation">
+
+                                    <option value="0">All</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-2 form-cols">
-                            <button type="button" class="btn btn-info">
-                                <span class="lnr lnr-magnifier"></span> Search
-                            </button>
+                            <input type="submit" value="Search" class="btn btn-default" />
+
                         </div>
                     </div>
                 </form>
@@ -284,17 +287,17 @@
                                 <p class="address">
                                     <span class="lnr lnr-map-marker"
                                           style="margin-right:7px"></span>@it.ApplicationUser.Company.Address
-                                </p>
-                            </div>
-                            <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
-                                <p>
-                                    <span style="font-size:14px">&ldquo;</span>@it.Description
-                                    ali...<span style="font-size:14px">&rdquo;</span>
-                                </p>
+                                    </p>
+                                </div>
+                                <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
+                                    <p>
+                                        <span style="font-size:14px">&ldquo;</span>@it.Description
+                                        ali...<span style="font-size:14px">&rdquo;</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
 
                 @*<div class="single-popular-post d-flex flex-row" style="padding:20px 20px 10px 20px">
                         <div class="thumb">

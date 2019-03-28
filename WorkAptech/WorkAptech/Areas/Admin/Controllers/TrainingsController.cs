@@ -233,7 +233,7 @@ namespace WorkAptech.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            applicationUser.Type = true;
             applicationUser.Status = true;
 
             await _context.SaveChangesAsync();
@@ -253,9 +253,9 @@ namespace WorkAptech.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            applicationUser.Type = false;
             applicationUser.Status = false;
-
+            
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));

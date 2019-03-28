@@ -65,14 +65,14 @@
                         @if (item.Type == false)
 
                         {
-                            <a class="btn btn-success text-white" asp-action="Lock" asp-route-id="@item.Id">
-                                <i class="fas fa-lock-open"></i>
+                            <a class="btn btn-danger text-white" asp-action="Lock" asp-route-id="@item.Id">
+                                Offline
                             </a>
                         }
                         else
                         {
                             <a class="btn btn-success text-white" asp-action="UnLock" asp-route-id="@item.Id">
-                                <i class="fas fa-lock"></i>
+                                Online
                             </a>
                         }
                         </td>
@@ -93,14 +93,14 @@
                             @if (item.Status == false)
 
                             {
-                                <a class="btn btn-success text-white" asp-action="Lock" asp-route-id="@item.Id">
-                                    <i class="fas fa-lock-open"></i>
+                                <a class="btn btn-danger text-white" asp-action="Lock" asp-route-id="@item.Id">
+                                    Offline
                                 </a>
                             }
                             else
                             {
                                 <a class="btn btn-success text-white" asp-action="UnLock" asp-route-id="@item.Id">
-                                    <i class="fas fa-lock"></i>
+                                    Online
                                 </a>
                             }
                         </td>

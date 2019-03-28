@@ -61,7 +61,19 @@
                         @Html.DisplayFor(m => item.Hour)
                     </td>
                     <td>
-                        @Html.DisplayFor(m => item.EventStatus)
+                        @if (item.EventStatus == false)
+
+                        {
+                            <a class="btn btn-danger text-white" asp-action="Lock" asp-route-id="@item.Id">
+                                Offline
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-success text-white" asp-action="UnLock" asp-route-id="@item.Id">
+                                Online
+                            </a>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(m => item.Category.Name)

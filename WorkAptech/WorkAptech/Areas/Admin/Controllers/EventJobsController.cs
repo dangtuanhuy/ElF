@@ -238,7 +238,46 @@ namespace WorkAptech.Areas.Admin.Controllers
             
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Lock(Int32? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var applicationUser = await _context.EventJob.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            applicationUser.EventStatus = true;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> UnLock(Int32? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var applicationUser = await _context.EventJob.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            applicationUser.EventStatus = false;
+            
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
         private bool EventJobExists(int id)
         {
             return _context.EventJob.Any(e => e.Id == id);

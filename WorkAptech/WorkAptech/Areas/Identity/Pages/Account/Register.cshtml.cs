@@ -74,6 +74,15 @@ namespace WorkAptech.Areas.Identity.Pages.Account
             public int? CompanyId { get; set; }
             [ForeignKey("CompanyId")]
             public virtual Company Company { get; set; }
+
+            [Display(Name = "User Skill")]
+            public int? UserSkillId { get; set; }
+            [ForeignKey("UserSkillId")]
+            public virtual UserSkill UserSkill { get; set; }
+
+            [Display(Name = "Experience")]
+            public string Experience { get; set; }
+            public enum ExperienceJob { OneYear = 0, TwoYears = 1, ThreeYears = 2, ThanThreeYears = 3 }
         }
 
         public void OnGet(string returnUrl = null)

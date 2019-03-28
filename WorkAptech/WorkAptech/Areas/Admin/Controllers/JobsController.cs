@@ -53,7 +53,7 @@ namespace WorkAptech.Areas.Admin.Controllers
         // GET: Admin/Jobs/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
             return View();
         }
@@ -98,8 +98,8 @@ namespace WorkAptech.Areas.Admin.Controllers
                 JobFromDb.Image = @"\images\" + job.Id + ".png";
             }
             await _context.SaveChangesAsync();
-            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", job.CategoryId);
-            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Name", "Name", job.CategoryId);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Name", "Name",job.UserId);
             return View(job);
         }
 

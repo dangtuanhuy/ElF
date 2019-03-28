@@ -26,7 +26,7 @@
                 <label asp-for="Type" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Type"  />
+                <input asp-for="Type" /> @Html.DisplayNameFor(m => m.Type)
             </div>
             <span asp-validation-for="Type" class="text-danger"></span>
         </div>
@@ -44,7 +44,7 @@
                 <label asp-for="Hours" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Hours" class="form-control" />
+                <input asp-for="Hours" id="timepicker"class="form-control" />
             </div>
             <span asp-validation-for="Hours" class="text-danger"></span>
         </div>
@@ -59,7 +59,7 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="CompanyId" class="col-form-label"></label>
+                <label asp-for="Company" class="col-form-label"></label>
             </div>
             <div class="col-5">
                 <select asp-for="CompanyId" id="CategoryId" asp-items="ViewBag.CompanyId" class="form-control"></select>
@@ -88,7 +88,7 @@
                 <label asp-for="Status" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Status"  />
+                <input asp-for="Status" /> @Html.DisplayNameFor(m => m.Type)
             </div>
             <span asp-validation-for="Status" class="text-danger"></span>
         </div>
@@ -99,3 +99,19 @@
         </div>
     </div>
 </form>
+@section Scripts {
+    <script>
+        $('#timepicker').timepicker({
+            timeFormat: 'h:mm:ss ',
+            interval: 60,
+            minTime: '10',
+            maxTime: '6:00pm',
+            defaultTime: '11',
+            startTime: '10:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

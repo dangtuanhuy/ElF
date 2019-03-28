@@ -69,10 +69,11 @@ namespace WorkAptech.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                
                 return View(eventJob);
 
             }
-
+            eventJob.EventStatus = true;
             _context.Add(eventJob);
             await _context.SaveChangesAsync();
             //Work on the image saving section

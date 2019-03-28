@@ -15,7 +15,7 @@ namespace WorkAptech.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -334,7 +334,7 @@ namespace WorkAptech.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(150);
 
-                    b.Property<double>("Salary");
+                    b.Property<float>("Salary");
 
                     b.Property<string>("UserId");
 
@@ -412,17 +412,11 @@ namespace WorkAptech.Data.Migrations
 
             modelBuilder.Entity("WorkAptech.Data.SkillJob", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("JobId");
 
                     b.Property<int>("SkillId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("JobId");
+                    b.HasKey("JobId", "SkillId");
 
                     b.HasIndex("SkillId");
 
@@ -465,6 +459,21 @@ namespace WorkAptech.Data.Migrations
                     b.ToTable("Training");
                 });
 
+            modelBuilder.Entity("WorkAptech.Data.UserSkill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(90);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserSkill");
+                });
+
             modelBuilder.Entity("WorkAptech.Data.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -473,10 +482,16 @@ namespace WorkAptech.Data.Migrations
 
                     b.Property<int?>("CompanyId");
 
+                    b.Property<string>("Experience");
+
                     b.Property<string>("Name")
                         .HasMaxLength(90);
 
+                    b.Property<int?>("UserSkillId");
+
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("UserSkillId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -625,6 +640,10 @@ namespace WorkAptech.Data.Migrations
                     b.HasOne("WorkAptech.Data.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
+
+                    b.HasOne("WorkAptech.Data.UserSkill", "UserSkill")
+                        .WithMany()
+                        .HasForeignKey("UserSkillId");
                 });
 #pragma warning restore 612, 618
         }

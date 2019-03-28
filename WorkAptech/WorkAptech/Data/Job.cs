@@ -20,8 +20,8 @@ namespace WorkAptech.Data
 
         [Required(ErrorMessage = "Salary can not null")]
         [Display(Name = "Salary")]
-        [Range(1, int.MaxValue, ErrorMessage = "Salary should be greater than ${150}")]
-        public double Salary { get; set; }
+        //[Range(250, int.MaxValue, ErrorMessage = "Salary should be greater than ${150}")]
+        public float Salary { get; set; }
 
         [Display(Name = "Description Details")]
         public string Description { get; set; }
@@ -34,6 +34,7 @@ namespace WorkAptech.Data
 
         [Required(ErrorMessage = "JobDate can not null")]
         [Display(Name = "JobDate Details")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime JobDate { get; set; }
 
         [Display(Name = "Experience")]

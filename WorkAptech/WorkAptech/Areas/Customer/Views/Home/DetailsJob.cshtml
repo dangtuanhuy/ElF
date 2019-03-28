@@ -142,43 +142,41 @@
             <!--  -->
             <!--  -->
             <div class="col-lg-3 sidebar">
-                @foreach (var lst2 in ViewBag.queryjob)
-                {
                     <div class="single-slidebar employer">
-                        <img src="/libUser/img/header-bg2.jpg" alt="" style="display: block;
+                        <img src="@Model.Image" alt="" style="display: block;
 							width: 100%;
 							height: 180px;
 							margin: 0 auto;
 							border-radius: 10px" />
-                        <h4 style="margin:0 auto;"><span class="title-employer">@lst2.ApplicationUser.Company.Name</span></h4>
+                        <h4 style="margin:0 auto;"><span class="title-employer">@Model.ApplicationUser.Company.Name</span></h4>
                         <p class="descrip" style="text-align: justify;">
-                            @lst2.Description
+                            @Model.Description
                         </p>
                         <div class="detail-employer">
                             <table>
                                 <tr>
                                     <td><i class="fas fa-cog"></i></td>
-                                    <td>@lst2.Name</td>
+                                    <td>@Model.Name</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-users"></i></td>
-                                    <td>@lst2.Salary</td>
+                                    <td>@Model.Salary</td>
                                 </tr>
                                 <tr>
-                                    <td style="line-height: 0.7"><i class="flag flag-@lst2.ApplicationUser.Company.Country.Code.ToString().ToLower()"></i></td>
-                                    <td>aaaaa</td>
+                                    <td style="line-height: 0.7"><i class="flag flag-@Model.ApplicationUser.Company.Country.Code.ToString().ToLower()"></i></td>
+                                    <td>@Model.ApplicationUser.Company.Location.Name</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-calendar-alt"></i></td>
-                                    <td>Monday - Friday</td>
+                                    <td>@Model.JobDate</td>
                                 </tr>
                                 <tr style="vertical-align: top; padding-top: 4px">
                                     <td><i class="fas fa-map-marker-alt"></i></td>
-                                    <td style="line-height: 1.3">56/8, Panthapath Dhanmondi Dhaka</td>
+                                    <td style="line-height: 1.3">@Model.ApplicationUser.Company.Address</td>
                                 </tr>
                             </table>
                         </div>
-                        <a href="#" class="link-employer">More about us...</a>
+                        <a  class="link-employer" asp-area="customer" asp-controller="home" asp-action="DetailsJob" asp-route-id="@Model.Id">More about us...</a>
                     </div>
                 }
 
@@ -188,9 +186,9 @@
                         @foreach (var lst in ViewBag.queryjob)
                         {
                             <div class="single-rated">
-                                <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
+                                <img class="img-fluid" src="@lst.Image" alt="">
                                 <a href="single.html">
-                                    <h4>@lst.</h4>
+                                    <h4>@lst.Name</h4>
                                 </a>
                                 <table>
                                     <tr>
@@ -207,33 +205,16 @@
                                             <p class="address"><span class="lnr lnr-map-marker"></span></p>
                                         </td>
                                         <td>
-                                            @lst.
+                                            @lst.ApplicationUser.Company.Address
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <p class="address"><span class="lnr lnr-calendar-full"></span></p>
                                         </td>
-                                        <td>03/02/2019</td>
+                                        <td>@lst.JobDate</td>
                                     </tr>
                                 </table>
-                                <ul class="tags-skill" style="display:block;">
-                                    <li>
-                                        <a href="#">Java</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Postgres</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">J2EE</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">J2EE</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">J2EE</a>
-                                    </li>
-                                </ul>
                                 <a href="#" class="btns text-uppercase">Apply job</a>
                             </div>
                         }

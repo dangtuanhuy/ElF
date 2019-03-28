@@ -1,8 +1,363 @@
-﻿@{
+﻿@model WorkAptech.Models.ViewModels.HomeLocationVM
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="banner-content col-lg-12">
+                <h1 class="text-white">
+                    <span>1500+</span> Jobs posted last week
+                </h1>
+                <form action="search.html" class="serach-form-area">
+                    <div class="row justify-content-center form-wrap">
+                        <div class="col-lg-4 form-cols">
+                            <input type="text" class="form-control" name="search"
+                                   placeholder="what are you looging for?">
+                        </div>
+                        <div class="col-lg-3 form-cols">
+                            <div class="default-select" id="default-selects">
+                                <select></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 form-cols">
+                            <div class="default-select" id="default-selects2">
+                                <select>
+                                    <option value="1">All Category</option>
+                                    <option value="2">Medical</option>
+                                    <option value="3">Technology</option>
+                                    <option value="4">Goverment</option>
+                                    <option value="5">Development</option>
+                                    <option value="1">All Category</option>
+                                    <option value="2">Medical</option>
+                                    <option value="3">Technology</option>
+                                    <option value="4">Goverment</option>
+                                    <option value="5">Development</option>
+                                    <option value="1">All Category</option>
+                                    <option value="2">Medical</option>
+                                    <option value="3">Technology</option>
+                                    <option value="4">Goverment</option>
+                                    <option value="5">Development</option>
+                                    <option value="1">All Category</option>
+                                    <option value="2">Medical</option>
+                                    <option value="3">Technology</option>
+                                    <option value="4">Goverment</option>
+                                    <option value="5">Development</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 form-cols">
+                            <button type="button" class="btn btn-info">
+                                <span class="lnr lnr-magnifier"></span> Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <p class="text-white">
+                    <span>Search by tags:</span> Tecnology, Business, Consulting, IT Company,
+                    Design, Development
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start features Area -->
+<section class="features-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Searching</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Applying</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Security</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <h4>Notifications</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End features Area -->
+<!-- Start feature-cat Area -->
+<section class="popular-post-area pt-100">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-10">
+                <div class="title text-center">
+                    <h1 class="mb-10">Featured Job Categories</h1>
+                    <p>Who are in extremely love with eco friendly system.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="slide-category">
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o1.png" alt="">
+                        </a>
+                        <p>Accounting1</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o2.png" alt="">
+                        </a>
+                        <p>Development</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o3.png" alt="">
+                        </a>
+                        <p>Technology</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o1.png" alt="">
+                        </a>
+                        <p>Accounting</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o2.png" alt="">
+                        </a>
+                        <p>Development</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o3.png" alt="">
+                        </a>
+                        <p>Technology</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o1.png" alt="">
+                        </a>
+                        <p>Accounting</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o2.png" alt="">
+                        </a>
+                        <p>Development</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o3.png" alt="">
+                        </a>
+                        <p>Technology</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o4.png" alt="">
+                        </a>
+                        <p>Media & News</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o5.png" alt="">
+                        </a>
+                        <p>Medical</p>
+                    </div>
+                </div>
+                <div class="item" style="padding-left:1px;" style="padding-left:1px;">
+                    <div class="single-fcat">
+                        <a href="category.html">
+                            <img src="/libUs/img/o6.png" alt="">
+                        </a>
+                        <p>Goverment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End feature-cat Area -->
+<section class="post-area section-gap">
+    <div class="title-item-custom">
+        <p>TOP <span>COMPANY</span></p>
+    </div>
+    @{ var a = 0;}
+    @foreach (var items in Model.ApplicationUser)
+    {
+        @if (a % 3 == 0)
+        {
+            @:<div class="row justify-content-center d-flex row-show-item-custom">
+            }
+
+
+        <div class="col-lg-3 sidebar">
+            <a class="item-custom-by" asp-controller="Home" asp-area="Customer" asp-action="" asp-route-id="">
+                <table>
+                    <tr class="item-image">
+                        <td>
+
+                            <img src="/libUs/img/header-bg2.jpg" alt="">
+
+                            <p>@items.Company.Type</p>
+                        </td>
+                    </tr>
+                    <tr class="item-name">
+                        <td>
+                            <p>@items.Company.Name<p></p>
+                        </td>
+                    </tr>
+                    <tr class="item-detail">
+                        <td>
+                            <p>Technology</p>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+        a++;
+        @if (a % 3 == 0)
+        {
+        @:</div>
+    }
+
+
+    }
+    <hr class="line-break" />
+</section>
+<!-- Start popular-post Area -->
+<section class="popular-post-area pt-100" style="padding-bottom: 100px;">
+    <div class="container">
+        <div class="title-suggest-job">
+            <div class="title">Jobs for <span>you</span></div>
+            <div class="brace"></div>
+        </div>
+        <div class="row align-items-center">
+            <div class="active-popular-post-carusel">
+                @foreach (var it in Model.Job.Take(2))
+                {
+                    <div class="single-popular-post d-flex flex-row" style="padding:20px 20px 10px 20px">
+                        <div class="thumb">
+                            <table>
+                                <tr>
+                                    <td><img src="/libUs/img/header-bg2.jpg" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="btns text-uppercase" href="#">view job</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="details">
+                            <a href="#">
+                                <h4>@it.Name</h4>
+                            </a>
+                            <span class="count-time-job">@it.JobDate</span>
+                            <h6 style="font-weight: 400; padding: 4px 0">@it.ApplicationUser.Company.Name</h6>
+                            <div style="font-size:12px;">
+                                <p class="address" style="color:#68ba50">
+                                    <i class="fas fa-dollar-sign"
+                                       style="margin: 0 10px 0 3px"></i>@it.Salary
+                                </p>
+                                <p class="address">
+                                    <span class="lnr lnr-map-marker"
+                                          style="margin-right:7px"></span>@it.ApplicationUser.Company.Address
+                                </p>
+                            </div>
+                            <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
+                                <p>
+                                    <span style="font-size:14px">&ldquo;</span>@it.Description
+                                    ali...<span style="font-size:14px">&rdquo;</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @*<div class="single-popular-post d-flex flex-row" style="padding:20px 20px 10px 20px">
+                        <div class="thumb">
+                            <table>
+                                <tr>
+                                    <td><img src="/libUs/img/header-bg2.jpg" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="btns text-uppercase" href="#">view job</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="details">
+                            <a href="#">
+                                <h4>Senior Java Develope</h4>
+                            </a>
+                            <span class="count-time-job">9 day ago</span>
+                            <h6 style="font-weight: 400; padding: 4px 0">Axon active</h6>
+                            <div style="font-size:12px;">
+                                <p class="address" style="color:#68ba50">
+                                    <i class="fas fa-dollar-sign"
+                                       style="margin: 0 10px 0 3px"></i>100~300
+                                </p>
+                                <p class="address">
+                                    <span class="lnr lnr-map-marker"
+                                          style="margin-right:7px"></span>56/8, Panthapath Dhanmondi Dhaka
+                                </p>
+                            </div>
+                            <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
+                                <p>
+                                    <span style="font-size:14px">&ldquo;</span>Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna
+                                    ali...<span style="font-size:14px">&rdquo;</span>
+                                </p>
+                            </div>
+                            <ul class="tags-skill">
+                                <li>
+                                    <a href="#">Javaaaaa</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End popular-post Area -->

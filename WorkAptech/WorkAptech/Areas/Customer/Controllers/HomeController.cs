@@ -39,6 +39,7 @@ namespace WorkAptech.Controllers
         public IActionResult Index()
         {
             ViewData["LocationId"] = new SelectList(_db.Location, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(_db.Category, "Id", "Name");
             return View(HomeLocationVM);
         }
 

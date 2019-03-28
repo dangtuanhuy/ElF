@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using WorkAptech.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using WorkAptech.Service;
 
 namespace WorkAptech
 {
@@ -38,10 +40,18 @@ namespace WorkAptech
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDefaultIdentity<IdentityUser>(config =>
+            //{
+            //    config.SignIn.RequireConfirmedEmail = true;
+            //});
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            //Email
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<EmailOptions>(Configuration);
+            //services.Configure<AuthMessageSenderOptions>(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

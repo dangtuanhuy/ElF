@@ -29,5 +29,7 @@ namespace WorkAptech.Data
         [Display(Name = "Experience")]
         public string Experience { get; set; }
         public enum ExperienceJob { OneYear = 0, TwoYears = 1, ThreeYears = 2, ThanThreeYears = 3 }
+
+        public Boolean BlockStatus { get; set; }
     }
 }

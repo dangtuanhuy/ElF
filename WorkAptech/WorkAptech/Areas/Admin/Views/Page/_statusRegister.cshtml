@@ -1,0 +1,13 @@
+﻿@using WorkAptech.Data;
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+        var statusRegister = ViewBag.statusRegister as IQueryable<ApplicationUser>;
+    }
+@foreach(var i in statusRegister)
+{
+    @i.LockoutEnd 
+}
+    @ViewBag.statusRegister
+

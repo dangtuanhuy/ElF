@@ -1,0 +1,190 @@
+﻿@model WorkAptech.Models.ViewModels.RegisterVM;
+@using WorkAptech.Extensions
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form method="post" asp-action="Create">
+    <div class="border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h3>Your information:</h3>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Email" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Email" class="form-control" />
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.PasswordHash" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.PasswordHash" class="form-control" type="password" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Name" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Experience" class="control-label"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="ApplicationUser.Experience" asp-items="Html.GetEnumSelectList<WorkAptech.Data.Job.ExperienceJob>()" class="form-control"></select>
+            </div>
+
+        </div>
+        <h3>Your Company:</h3>
+        <div class="form-group row">
+            <div class="col-2">
+
+                <label asp-for="ApplicationUser.Company.Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Company.Name" class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Company.Type" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Company.Type" class="form-control" />
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Company.Address" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Company.Address" class="form-control" />
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Company.Contact" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Company.Contact" class="form-control" />
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Company.QtyEmployee" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Company.QtyEmployee" class="form-control" />
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Company.Country.Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="ApplicationUser.Company.Location.Name" asp-items="ViewBag.CountryId" class="form-control"></select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="col-form-label">Category</label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.Category" id="CategoryId2" asp-items="ViewBag.listtest" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="col-form-label">Skill</label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.Skill" id="SkillId" asp-items="@(new SelectList(string.Empty,"Id","Name"))" class="form-control" multiple="multiple" disabled="true"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Company.Location.Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                @*<input asp-for="ApplicationUser.Company.Location.Name" class="form-control" />*@
+                <select asp-for="ApplicationUser.Company.Location.Name" asp-items="ViewBag.LocationId" class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <input type="submit" class="btn btn-info form-control" value="Create" />
+            </div>
+
+        </div>
+
+
+    </div>
+</form>
+@section Scripts{
+    <script>
+        function getCategory() {
+            var url = '@Url.Content("/")' + 'Admin/SIgnIn/Category';
+            var ddlsoruce = '#CategoryId';
+            $.getJSON(url, { id: $(ddlsoruce).val() }, function (data) {
+                console.log();
+                var items = '';
+                $('#CategoryId').empty();
+                $.each(data, function (i, category) {
+                    items += "<option value='" + category.value + "'>" + category.text + "</option>";
+                });
+
+                $('#CategoryId').html(items);
+
+            })
+        }
+
+
+        $(document).ready(function () {
+            getCategory();
+        });
+
+        function getSkill() {
+            var cate = document.getElementById("CategoryId").value;
+            $.ajax({
+                url: "/Admin/SIgnIn/Skill?id=" + cate,
+                type = 'GET',
+                text = 'text',
+                success: function (data1) {
+                    var items = '';
+                    $('#SkillId').empty();
+                    $.each(data1, function (i, skill) {
+                        items += "<option value='" + skill.value + "'>" + skill.text + "</option>";
+                    });
+
+                    $('#SkillId').html(items);
+                }
+            });
+        };
+
+        $("#CategoryId").on("change", function () {
+            getCategory();
+        });
+
+
+
+    </script>
+
+}

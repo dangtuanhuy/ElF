@@ -83,39 +83,43 @@
                     <i class="fas fa-fw fa-arrow-alt-circle-right"></i>
                     <span>Traning Management</span>
                 </a>
-                <div id="training"  class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="training" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">About:</h6>
                         <a class="collapse-item" asp-action="Index" asp-controller="Trainings" asp-area="Admin">Training</a>
                         <a class="collapse-item" asp-action="Index" asp-controller="EventJobs" asp-area="Admin">EventJobs</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="ApplicationUser" asp-area="Admin">User</a>
+                        <a class="collapse-item" asp-action="Register" asp-controller="SIgnIn" asp-area="Admin">Register</a>
                     </div>
                 </div>
             </li>
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider"/>
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <div class="sidebar-heading"/>
                 Addons
             </div>
+            
+
             <!-- Nav Item - Pages Collapse Menu -->
             @*<li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>Events</span>
-                    </a>
-                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="#">Login</a>
-                        <a class="collapse-item" href="#">Register</a>
-                        <a class="collapse-item" href="#">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="#">404 Page</a>
-                        <a class="collapse-item" href="#">Blank Page</a>
-                    </div>
-                </div>
-                </li>*@
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Events</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Login Screens:</h6>
+                <a class="collapse-item" href="#">Login</a>
+                <a class="collapse-item" href="#">Register</a>
+                <a class="collapse-item" href="#">Forgot Password</a>
+                <div class="collapse-divider"></div>
+                <h6 class="collapse-header">Other Pages:</h6>
+                <a class="collapse-item" href="#">404 Page</a>
+                <a class="collapse-item" href="#">Blank Page</a>
+            </div>
+        </div>
+        </li>*@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -125,11 +129,11 @@
             </li>
             <!-- Nav Item - Tables -->
             @*<li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Tables</span>
-                    </a>
-                </li>*@
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span>
+            </a>
+        </li>*@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
@@ -398,6 +402,7 @@
                             </div>
                         </div>
                     </div>
+                   <partial name="_countEvent" />
                     @RenderBody()
                 </div>
                 <!-- /.container-fluid -->

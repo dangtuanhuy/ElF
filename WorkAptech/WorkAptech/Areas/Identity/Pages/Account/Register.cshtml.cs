@@ -18,6 +18,7 @@ namespace WorkAptech.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
+
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
@@ -83,6 +84,7 @@ namespace WorkAptech.Areas.Identity.Pages.Account
             [Display(Name = "Experience")]
             public string Experience { get; set; }
             public enum ExperienceJob { OneYear = 0, TwoYears = 1, ThreeYears = 2, ThanThreeYears = 3 }
+            public Boolean BlockStatus { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -126,7 +128,7 @@ namespace WorkAptech.Areas.Identity.Pages.Account
 
                     //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                     //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+                    
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }

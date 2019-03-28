@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +18,15 @@ namespace WorkAptech.Areas.Admin.Controllers
     {
         private readonly ApplicationDbContext _context;
         //upload Img
+        private readonly IEmailSender _emailSender;
+
         private readonly IHostingEnvironment _hostingEnvironment;
-        public CategoriesController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
+
+        public CategoriesController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment, IEmailSender emailSender)
         {
             _context = context;
             _hostingEnvironment = hostingEnvironment;
+            _emailSender = emailSender;
         }
 
         // GET: Admin/Categories

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,8 @@ namespace WorkAptech.Areas.Admin.Controllers
         private readonly ApplicationDbContext _context;
         //Sử dụng để upload hình
         private readonly IHostingEnvironment _hostingEnvironment;
+        //
+        private readonly IEmailSender _emailSender;
         public JobsController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
@@ -100,6 +103,7 @@ namespace WorkAptech.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             ViewData["CategoryId"] = new SelectList(_context.Category, "Name", "Name", job.CategoryId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Name", "Name",job.UserId);
+
             return View(job);
         }
 

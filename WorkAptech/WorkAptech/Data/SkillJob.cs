@@ -9,17 +9,18 @@ namespace WorkAptech.Data
 {
     public class SkillJob
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
-        public int Id { get; set; }
+        //[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Required]
+        //public int Id { get; set; }
 
-
+        [Key]
         [Display(Name = "Skill")]
         public int SkillId { get; set; }
 
         [ForeignKey("SkillId")]
         public virtual Skill Skill { get; set; }
 
+        [Key]
         [Display(Name = "Job")]
         public int JobId { get; set; }
 

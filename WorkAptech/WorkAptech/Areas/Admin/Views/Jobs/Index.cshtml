@@ -22,9 +22,7 @@
             <table class="table table-striped border" id="tablefillset">
                 <thead>
                     <tr class="table-secondary">
-                        <th>
-                            @Html.DisplayNameFor(m => m.Id)
-                        </th>
+                        
                         <th>
                             @Html.DisplayNameFor(m => m.Name)
                         </th>
@@ -38,9 +36,7 @@
                             @Html.DisplayNameFor(m => m.Description)
                         </th>
 
-                        <th>
-                            @Html.DisplayNameFor(m => m.Image)
-                        </th>
+                        
                         <th>
                             @Html.DisplayNameFor(m => m.Experience)
                         </th>
@@ -56,9 +52,7 @@
                         <th>
                             @Html.DisplayNameFor(m => m.CategoryId)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(m => m.UserId)
-                        </th>
+                        
                         <th></th>
                     </tr>
                 </thead>
@@ -79,9 +73,7 @@
                         <td>
                             @Html.DisplayFor(m => item.Description)
                         </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Image)
-                        </td>
+                        
                         <td>
                             @Html.DisplayFor(m => item.Experience)
                         </td>
@@ -97,14 +89,12 @@
                         <td>
                             @Html.DisplayFor(m => item.CategoryId)
                         </td>
-                        <td>
-                            @Html.DisplayFor(m => item.UserId)
-                        </td>
+                        
                         <td style="width:150px">
                             <partial name="_TableButtonPartial" model="item.Id" />
                         </td>
                     </tr>
-
+                   
                     }
                 </tbody>
             </table>

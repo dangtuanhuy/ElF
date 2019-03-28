@@ -32,7 +32,7 @@
                     <label asp-for="Type" class="custom-label"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Type"  />
+                    <input asp-for="Type" />
                 </div>
             </div>
             <div class="form-group row">
@@ -56,7 +56,7 @@
                     <label asp-for="Description" class="custom-label"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Description" class="form-control" />
+                    @Html.TextAreaFor(m => m.Description)
                 </div>
             </div>
             <div class="form-group row">
@@ -80,7 +80,7 @@
                     <label asp-for="Status" class="custom-label"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Status"  />
+                    <input asp-for="Status" />
                 </div>
             </div>
         </fieldset>
@@ -95,3 +95,15 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: "lists",
+                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist",
+                menubar: 'file edit format',
+                readonly: 1
+            });</script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+
+}

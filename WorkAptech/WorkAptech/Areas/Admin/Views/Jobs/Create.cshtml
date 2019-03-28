@@ -35,7 +35,7 @@
                 <label asp-for="Description" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Description" class="form-control" />
+                @Html.TextAreaFor(m => m.Description)
             </div>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
@@ -84,6 +84,7 @@
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
         </div>
+
         <div class="form-group row">
             <div class="col-2">
                 <label asp-for="UserId" class="control-label"></label>
@@ -133,5 +134,28 @@
             scrollbar: true
         });
     </script>
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: "lists",
+                menubar: 'file edit format',
+                height: 300,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table paste imagetools wordcount"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                content_css: [
+                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                    '//www.tiny.cloud/css/codepen.min.css'
+                ]
+            });
+        </script>
+
+
+
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

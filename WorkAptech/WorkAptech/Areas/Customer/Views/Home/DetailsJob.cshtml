@@ -67,11 +67,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div style="width: 83vw">
-                                                <ul class="btns">
-                                                        <li><a href="#">Apply now</a></li>
-                                                    </ul>
-                                        </div> -->
+
                 </div>
                 <!--  -->
                 <div class="single-post detail-job">
@@ -146,7 +142,7 @@
             <!--  -->
             <!--  -->
             <div class="col-lg-3 sidebar">
-                @foreach (var lst in ViewBag.queryjob)
+                @foreach (var lst2 in ViewBag.queryjob)
                 {
                     <div class="single-slidebar employer">
                         <img src="/libUser/img/header-bg2.jpg" alt="" style="display: block;
@@ -154,23 +150,23 @@
 							height: 180px;
 							margin: 0 auto;
 							border-radius: 10px" />
-                        <h4 style="margin:0 auto;"><span class="title-employer">@lst.ApplicationUser.Company.Name</span></h4>
+                        <h4 style="margin:0 auto;"><span class="title-employer">@lst2.ApplicationUser.Company.Name</span></h4>
                         <p class="descrip" style="text-align: justify;">
-                            @lst.Description
+                            @lst2.Description
                         </p>
                         <div class="detail-employer">
                             <table>
                                 <tr>
                                     <td><i class="fas fa-cog"></i></td>
-                                    <td>@lst.Name</td>
+                                    <td>@lst2.Name</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-users"></i></td>
-                                    <td>@lst.Salary</td>
+                                    <td>@lst2.Salary</td>
                                 </tr>
                                 <tr>
-                                    <td style="line-height: 0.7"><i class="flag flag-vn"></i></td>
-                                    <td>Vietnam</td>
+                                    <td style="line-height: 0.7"><i class="flag flag-@lst2.ApplicationUser.Company.Country.Code.ToString().ToLower()"></i></td>
+                                    <td>aaaaa</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fas fa-calendar-alt"></i></td>
@@ -189,558 +185,61 @@
                 <div class="single-slidebar">
                     <h4>Jobs for you :</h4>
                     <div class="active-relatedjob-carusel">
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block;">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
-                        <div class="single-rated">
-                            <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
-                            <a href="single.html">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <p class="address" style="color:#68ba50">
-                                            <i class="fas fa-dollar-sign"
-                                               style="margin: 0 13px 0 3px"></i>
-                                        </p>
-                                    </td>
-                                    <td>Outsourcing</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-map-marker"></span></p>
-                                    </td>
-                                    <td>
-                                        56/8, Panthapath
-                                        Dhanmondi Dhaka
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="address"><span class="lnr lnr-calendar-full"></span></p>
-                                    </td>
-                                    <td>03/02/2019</td>
-                                </tr>
-                            </table>
-                            <ul class="tags-skill" style="display:block; ">
-                                <li>
-                                    <a href="#">Java</a>
-                                </li>
-                                <li>
-                                    <a href="#">Postgres</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                                <li>
-                                    <a href="#">J2EE</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btns text-uppercase">Apply job</a>
-                        </div>
+                        @foreach (var lst in ViewBag.queryjob)
+                        {
+                            <div class="single-rated">
+                                <img class="img-fluid" src="/libUser/img/r1.jpg" alt="">
+                                <a href="single.html">
+                                    <h4>@lst.</h4>
+                                </a>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <p class="address" style="color:#68ba50">
+                                                <i class="fas fa-dollar-sign"
+                                                   style="margin: 0 13px 0 3px"></i>
+                                            </p>
+                                        </td>
+                                        <td>@lst.ApplicationUser.Company.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="address"><span class="lnr lnr-map-marker"></span></p>
+                                        </td>
+                                        <td>
+                                            @lst.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="address"><span class="lnr lnr-calendar-full"></span></p>
+                                        </td>
+                                        <td>03/02/2019</td>
+                                    </tr>
+                                </table>
+                                <ul class="tags-skill" style="display:block;">
+                                    <li>
+                                        <a href="#">Java</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Postgres</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">J2EE</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">J2EE</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">J2EE</a>
+                                    </li>
+                                </ul>
+                                <a href="#" class="btns text-uppercase">Apply job</a>
+                            </div>
+                        }
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

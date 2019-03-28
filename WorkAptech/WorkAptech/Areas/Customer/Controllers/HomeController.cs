@@ -30,5 +30,9 @@ namespace WorkAptech.Controllers
         {
             return View();
         }
+        public IActionResult DetailsJob()
+        {
+            return View();
+        }
     }
 }

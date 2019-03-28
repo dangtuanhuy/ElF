@@ -85,6 +85,8 @@ namespace WorkAptech.Areas.Identity.Pages.Account
             public string Experience { get; set; }
             public enum ExperienceJob { OneYear = 0, TwoYears = 1, ThreeYears = 2, ThanThreeYears = 3 }
             public Boolean BlockStatus { get; set; }
+
+            public int NotificationId { get; set; }
         }
 
         public void OnGet(string returnUrl = null)

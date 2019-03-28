@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
     <!-- Mobile Specific Meta -->
@@ -45,8 +46,8 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="index.html">Home</a></li>
-                        <li><a href="about-us.html">Jobs</a></li>
+                        <li class="menu-active"><a asp-area="Customer" asp-controller="Home" asp-action="index">Home</a></li>
+                        <li><a asp-area="Customer" asp-controller="home" asp-action="JobHome">Jobs</a></li>
                         <li><a href="about-us.html">Company</a></li>
                         <li><a href="category.html">Category</a></li>
                         <li><a href="about-us.html">About Us</a></li>

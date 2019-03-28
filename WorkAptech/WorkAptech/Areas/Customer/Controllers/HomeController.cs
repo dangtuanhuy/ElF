@@ -81,14 +81,25 @@ namespace WorkAptech.Controllers
         {
             var query = (from a in _db.Skill
                          join b in _db.SkillJob on a.Id equals b.SkillId
-                         select new { a.Name, b.JobId }
-                         ).ToList();
+                         where b.JobId == id
+                         select a.Name).ToList();
             ViewBag.query = query;
-            //var getlist = ViewBag.query as IE
-            var js = await _db.Job.Include(m => m.Category)
+            var queryjb = await _db.Job.Include(m => m.Category)
                 .Include(m => m.ApplicationUser)
                 .Include(m => m.ApplicationUser.Company)
                 .Include(m => m.ApplicationUser.Company.Country).ToListAsync();
+            //var getlist = ViewBag.query as IE
+            ViewBag.queryjob = queryjb;
+            var js = await _db.Job.Include(m => m.Category)
+                .Include(m => m.ApplicationUser)
+                .Include(m => m.ApplicationUser.Company)
+                .Include(m => m.ApplicationUser.Company.Country)
+                .Where(m => m.Id == id)
+                .FirstOrDefaultAsync();
+            return View(js);
+        }
+        public IActionResult JobHome()
+        {
             return View();
         }
     }

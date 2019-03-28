@@ -37,8 +37,10 @@
                         </div>
                         <div class="col-lg-2 form-cols">
                             <input type="submit" value="Search" class="btn btn-default" />
-
                         </div>
+                        @*<button type="button" class="btn btn-info">
+                            <span class="lnr lnr-magnifier"></span> Search
+                        </button>*@
                     </div>
                 </form>
                 <p class="text-white">
@@ -209,7 +211,7 @@
         <p>TOP <span>COMPANY</span></p>
     </div>
     @{ var a = 0;}
-    @foreach (var items in Model.ApplicationUser)
+    @foreach (var items in Model.ApplicationUser.Take(9))
     {
         @if (a % 3 == 0)
         {
@@ -269,10 +271,10 @@
                                     <td><img src="/libUs/img/header-bg2.jpg" alt=""></td>
                                 </tr>
                                 <tr>
-                                    <td><a class="btns text-uppercase" href="#">view job</a></td>
+                                    <td><a class="btns text-uppercase" asp-area="customer" asp-controller="home" asp-action="DetailsJob" asp-route-id="@it.Id">view job</a></td>
                                 </tr>
                             </table>
-                        </div>
+                        </div>@it.Id
                         <div class="details">
                             <a href="#">
                                 <h4>@it.Name</h4>
@@ -298,49 +300,7 @@
                             </div>
                         </div>
                     }
-
-                @*<div class="single-popular-post d-flex flex-row" style="padding:20px 20px 10px 20px">
-                        <div class="thumb">
-                            <table>
-                                <tr>
-                                    <td><img src="/libUs/img/header-bg2.jpg" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <td><a class="btns text-uppercase" href="#">view job</a></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="details">
-                            <a href="#">
-                                <h4>Senior Java Develope</h4>
-                            </a>
-                            <span class="count-time-job">9 day ago</span>
-                            <h6 style="font-weight: 400; padding: 4px 0">Axon active</h6>
-                            <div style="font-size:12px;">
-                                <p class="address" style="color:#68ba50">
-                                    <i class="fas fa-dollar-sign"
-                                       style="margin: 0 10px 0 3px"></i>100~300
-                                </p>
-                                <p class="address">
-                                    <span class="lnr lnr-map-marker"
-                                          style="margin-right:7px"></span>56/8, Panthapath Dhanmondi Dhaka
-                                </p>
-                            </div>
-                            <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
-                                <p>
-                                    <span style="font-size:14px">&ldquo;</span>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna
-                                    ali...<span style="font-size:14px">&rdquo;</span>
-                                </p>
-                            </div>
-                            <ul class="tags-skill">
-                                <li>
-                                    <a href="#">Javaaaaa</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>*@
-            </div>
+            </div>  
         </div>
     </div>
 </section>

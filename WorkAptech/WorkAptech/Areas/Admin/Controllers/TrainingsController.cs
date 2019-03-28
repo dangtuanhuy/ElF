@@ -54,7 +54,7 @@ namespace WorkAptech.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
-            ViewData["CompanyId"] = new SelectList(_context.Company, "Id", "Address");
+            ViewData["CompanyId"] = new SelectList(_context.Company, "Id", "Name");
             return View();
         }
 

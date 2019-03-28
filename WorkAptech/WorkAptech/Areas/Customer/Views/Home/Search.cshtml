@@ -4,57 +4,61 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 <section class="banner-area relative" id="home">
-    <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row fullscreen d-flex align-items-center justify-content-center">
-            <div class="banner-content col-lg-12">
-                <h1 class="text-white">
-                    <span>1500+</span> Jobs posted last week
-                </h1>
-                <form asp-action="Index" class="serach-form-area" method="get">
-                    <div class="row justify-content-center form-wrap">
-                        <div class="col-lg-4 form-cols">
-                            <input type="text" class="form-control" name="SearchString"
-                                   placeholder="what are you looging for?" value="@ViewData["currentFilter"]">
-                        </div>
-                        <div class="col-lg-3 form-cols">
-                            <div class="default-select" id="default-selects">
-                                <select asp-items="ViewBag.CategoryId" name="idCategory">
-                                    <option value="0">All</option>
-                                </select>
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row fullscreen d-flex align-items-center justify-content-center">
+                <div class="banner-content col-lg-12">
+                    <h1 class="text-white">
+                        <span>1500+</span> Jobs posted last week
+                    </h1>
+                    <form asp-action="Index" class="serach-form-area" method="get">
+                        <div class="row justify-content-center form-wrap">
+                            <div class="col-lg-4 form-cols">
+                                <input type="text" class="form-control" name="SearchString"
+                                       placeholder="what are you looging for?" value="@ViewData["currentFilter"]">
                             </div>
-                        </div>
-                        <div class="col-lg-3 form-cols">
-                            <div class="default-select" id="default-selects2">
-                                <select asp-items="ViewBag.LocationId" name="idLocation">
-
-                                    <option value="0">All</option>
-                                </select>
+                            <div class="col-lg-3 form-cols">
+                                <div class="default-select" id="default-selects">
+                                    <select asp-items="ViewBag.CategoryId" name="idCategory">
+                                        <option value="0">All</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-2 form-cols">
-                            <button type="button" class="btn btn-info btn-temp-search">
-                                <span class="lnr lnr-magnifier"></span> Search
-                            </button>
-                            <input type="submit" value="Search" class="btn btn-default btn-prim-search" style="display:none" />
-                        </div>
+                            <div class="col-lg-3 form-cols">
+                                <div class="default-select" id="default-selects2">
+                                    <select asp-items="ViewBag.LocationId" name="idLocation">
 
-                    </div>
-                </form>
-                <p class="text-white">
-                    <span>Search by tags:</span> Tecnology, Business, Consulting, IT Company,
-                    Design, Development
-                </p>
+                                        <option value="0">All</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 form-cols">
+                                <button type="button" class="btn btn-info btn-temp-search">
+                                    <span class="lnr lnr-magnifier"></span> Search
+                                </button>
+                                <input type="submit" value="Search" class="btn btn-default btn-prim-search" style="display:none" />
+                            </div>
+
+                        </div>
+                    </form>
+                    <p class="text-white">
+                        <span>Search by tags:</span> Tecnology, Business, Consulting, IT Company,
+                        Design, Development
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
 <section class="popular-post-area pt-100" style="padding-bottom: 100px;">
     <div class="container">
         <div class="title-suggest-job" style="margin-bottom:40px">
-            <div class="title">Jobs for <span style="padding-right: unset">"PHP"</span> with <span style="padding-right: unset">"IT"</span> at <span style="padding-right: unset">"HCM"</span> category <span style="padding-right: unset">"Technology"</span></div>
+            <div class="title">
+                Jobs for <span style="padding-right: unset">"PHP"</span> with <span style="padding-right: unset">"IT"</span> at <span style="padding-right: unset">"HCM"</span> category <span style="padding-right: unset">"Technology"</span>
+            </div>
         </div>
-        <div class="row align-items-center">
+        <div class="row align-items-center" style="padding:0 100px">
+            @*  *@
             @foreach (var i in Model.Job)
             {
                 <div class="single-popular-post d-flex flex-row job-in-search">
@@ -75,38 +79,38 @@
                         </a>
                         <span class="count-time-job">@i.JobDate</span>
                         <h6 style="font-weight: 400; padding: 4px 0">
-                            <img src="img/header-bg2.jpg" alt="">@i.ApplicationUser.Company.Name
+                            @*<img src="" alt="">*@ @i.ApplicationUser.Company.Name
                         </h6>
                         <div style="font-size:12px;">
                             <p class="address" style="color:#68ba50">
                                 <i class="fas fa-dollar-sign"
-                                   style="margin: 0 10px 0 3px"></i>@i.Salary
+                                   style="margin: 0 10px 0 3px"></i>@i.ApplicationUser.Company.QtyEmployee
                             </p>
                             <p class="address">
                                 <span class="lnr lnr-map-marker"
                                       style="margin-right:7px"></span>@i.ApplicationUser.Company.Address
-                            </p>
-                        </div>
-                        <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
-                            <p>
-                                <span style="font-size:14px">&ldquo;</span>@i.Description
-                                <span style="font-size:14px">&rdquo;</span>
-                            </p>
-                        </div>
-                        <ul class="tags-skill">
-                            @foreach (var ite in Model.SkillJob.Where(m=>m.JobId == i.Id))
-                            {
+                                </p>
+                            </div>
+                            <div style="text-indent:15px;font-size:12px; margin-bottom: 7px; color:#d4d0d0">
+                                <p>
+                                    <span style="font-size:14px">&ldquo;</span>@i.Description<span style="font-size:14px">&rdquo;</span>
+                                </p>
+                            </div>
+                            <ul class="tags-skill">
                                 <li>
-                                    <a>@ite.Skill.Name</a>
+                                    <a href="#">Java</a>
                                 </li>
-                            }
-
-                        </ul>
+                                <li>
+                                    <a href="#">Postgres</a>
+                                </li>
+                                <li>
+                                    <a href="#">J2EE</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            }
-
-        </div>
+                } @*  *@
+                
+            </div>
     </div>
 </section>
-

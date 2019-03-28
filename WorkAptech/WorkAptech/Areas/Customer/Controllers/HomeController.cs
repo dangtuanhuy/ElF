@@ -85,7 +85,9 @@ namespace WorkAptech.Controllers
             {
                 HomeLocationVM.Job = HomeLocationVM.Job.Where(m => m.Name.Contains(searchString));
             }
-
+            ViewBag.a = searchString;
+            ViewBag.b = idLocation;
+            ViewBag.c = idCategory;
             ViewData["LocationId"] = new SelectList(_db.Location, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_db.Category, "Id", "Name");
             return View(HomeLocationVM);

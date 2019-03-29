@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WorkAptech.Areas.Identity.Pages.Account
 {
+    [Area("Admin")]
     [AllowAnonymous]
     public class LoginModel : PageModel
     {

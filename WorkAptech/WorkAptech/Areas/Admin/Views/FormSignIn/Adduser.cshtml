@@ -1,0 +1,51 @@
+﻿@model WorkAptech.Models.ViewModels.ClassVM
+@using WorkAptech.Extensions
+@{
+    ViewData["Title"] = "Adduser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br />
+<h2 class="text-info">Create Company</h2>
+<br />
+
+<form method="post" asp-action="Adduser">
+    <div class="border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="ApplicationUser.CompanyId" value="@ViewBag.f" hidden />
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ApplicationUser.Email" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.Email" class="form-control" />
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="col-form-label">Password</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ApplicationUser.PasswordHash" class="form-control" type="password" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="col-form-label">Company</label>
+            </div>
+            <div class="col-5">
+                <select asp-for="ApplicationUser.CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-6">
+                <input type="submit" class="btn btn-info form-control" value="Create" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+

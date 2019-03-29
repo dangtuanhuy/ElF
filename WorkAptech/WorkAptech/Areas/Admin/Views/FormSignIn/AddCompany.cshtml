@@ -1,0 +1,88 @@
+﻿@model WorkAptech.Models.ViewModels.ClassVM
+@using WorkAptech.Extensions
+@{
+    ViewData["Title"] = "AddCompany";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br />
+<h2 class="text-info">Register Employer</h2>
+<br />
+
+<form method="post" asp-action="Create">
+    <div class="border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Company.Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Company.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Company.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Company.Type" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Company.Type" class="form-control" />
+            </div>
+            <span asp-validation-for="Company.Type" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Company.Address" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Company.Address" class="form-control" />
+            </div>
+            <span asp-validation-for="Company.Address" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Company.Contact" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Company.Contact" class="form-control" />
+            </div>
+            <span asp-validation-for="Company.Contact" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Company.CountryId" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="Company.CountryId" id="CategoryId" asp-items="ViewBag.CountryId" class="form-control"></select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Company.LocationId" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="Company.LocationId" id="CategoryId" asp-items="ViewBag.LocationId" class="form-control"></select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Company.QtyEmployee" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Company.QtyEmployee" class="form-control" />
+            </div>
+            <span asp-validation-for="Company.QtyEmployee" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-6">
+                <input type="submit" class="btn btn-info form-control" value="Create" />
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+

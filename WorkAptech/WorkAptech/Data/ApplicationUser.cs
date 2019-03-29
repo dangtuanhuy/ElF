@@ -21,7 +21,7 @@ namespace WorkAptech.Data
         [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
 
-        public string UserSkill { get; set; }
+        
 
         [Display(Name = "Experience")]
         public string Experience { get; set; }
@@ -29,6 +29,9 @@ namespace WorkAptech.Data
 
         public Boolean BlockStatus { get; set; }
 
-        public int NotificationId { get; set; }
+        [Display(Name = "Skill Id")]
+        public int? UserSkillId { get; set; }
+        [ForeignKey("UserSkillId")]
+        public virtual UserSkill UserSkill { get; set; }
     }
 }

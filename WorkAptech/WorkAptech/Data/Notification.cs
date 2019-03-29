@@ -16,6 +16,9 @@ namespace WorkAptech.Data
         [Display(Name = "From User Id")]
         public string FromUserId { get; set; }
 
+        [ForeignKey("FromUserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         [Display(Name = "To User Id")]
         public string ToUserId { get; set; }
 
@@ -24,6 +27,10 @@ namespace WorkAptech.Data
 
         [Display(Name = "Apply Details")]
         public int AppliDetailId { get; set; }
+
+        [ForeignKey("AppliDetailId")]
+        public virtual ApplyDetails ApplyDetails { get; set; }
+
 
 
     }
